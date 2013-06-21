@@ -1,0 +1,96 @@
+#todo {
+	font: .8em "Droid Sans", Calibri, Helvetica;
+}
+
+#todo .item {
+	display: block;
+	float:left;
+	width: 500px;
+	margin: 1px 0px;
+	padding-top: 3px;
+	padding-bottom: 0px;
+	padding-right: 3px;
+}
+
+#todo input[type="checkbox"] {
+	float: left;
+	position: relative;
+	top: -1px;
+}
+
+#todo .description {
+	float: left;
+	padding: 0px 5px;
+	width: 390px;
+	word-wrap: break-word;
+}
+
+#todo .course {
+	display: inline;
+	font: .9em Consolas, "Droid Sans Mono", monospace;
+	background-color: #BAD6D4;
+	padding: 1px 3px 1px 3px;
+	margin-left: 4px;
+}
+
+#todo .complete {
+	background-color: #aaffaa;
+	display: inline;
+}
+
+#todo .due_date {
+	float: right;
+	display: inline;
+	padding: 0px 5px;
+}
+
+/* delete button */
+#todo .delete {
+	width: 16px;
+	height: 16px;
+	display: inline;
+	float: right;
+	background-image: url(custom-theme/images/ui-icons_222222_256x240.png);
+	background-repeat: no-repeat;
+	background-position: -96px -128px;
+	/*background-position: -32px -192px;*/
+	z-index: 5;
+	visibility: hidden;
+}
+
+#todo .delete-active {
+	visibility: visible;
+}
+
+#todo .delete:hover {
+	cursor: pointer;
+}
+
+
+#todo #add_item {
+	clear: both;
+}
+
+#todo input, #todo select {
+	font: 1em "Droid Sans", Calibri, Helvetica;
+	border: 1px solid #AAA;
+}
+
+#todo #add_description {
+	width: 375px; 
+}
+
+#todo #add_due_date {
+	text-align: center;
+}
+
+#todo #due_date_calendar {
+	position: absolute;
+	float: left;
+	display: none;
+}
+
+.no_items {
+	color: #555;
+	text-align: center;
+}
