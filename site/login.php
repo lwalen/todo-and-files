@@ -52,7 +52,7 @@ if(!function_exists('showLoginPasswordProtect')) {
 	<div class='section'>
 		<div id='files'>
 <?php
-		$public_files = getFiles('../../web/site/public/');
+		$public_files = getFiles('/home/web/site/public/');
 
 		if( empty( $public_files ) )
 		{

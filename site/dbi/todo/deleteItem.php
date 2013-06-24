@@ -1,5 +1,5 @@
 <?php
-	require "/home/web/site/dbi/db.inc";
+	require_once "/home/web/include/dbi/db.inc";
 
 	$id = $_REQUEST['id'];
 	

@@ -38,11 +38,11 @@
 <?php
 		foreach( $classes as $class )
 		{
-			$id = $class->getID();
-			$name = strtolower($class->getName());
-			$department = strtolower($class->getDepartment());
-			$number = $class->getNumber();
-			$abbreviation = $class->getAbbreviation();
+			$id = $class->id;
+			$name = strtolower($class->name);
+			$department = strtolower($class->department);
+			$number = $class->number;
+			$abbreviation = $class->abbreviation;
 ?>
 	<a href='files.php?d=<?= str_replace(' ', '_', $name) ?>'>
 		<div class='name'><?= $name ?></div>
@@ -75,10 +75,10 @@
 			<option></option>
 <?php
 	foreach( $classes as $class ) {
-		$id = $class->getID();
-		$department = $class->getDepartment();
-		$number = $class->getNumber();
-		$abbreviation = $class->getAbbreviation();
+		$id = $class->id;
+		$department = $class->department;
+		$number = $class->number;
+		$abbreviation = $class->abbreviation;
 		echo "			<option value='$id'>$abbreviation</option>\n";
 	}	
 ?>
@@ -103,8 +103,8 @@
 		<div id='files'>
 
 <?php
-	$files = getFiles('.');
-	$public_files = getFiles('../../web/site/public/');
+	$files = getFiles('/home/lars/documents/');
+	$public_files = getFiles('/home/web/site/public/');
 
 	if( empty( $files ) && empty( $public_files ) )
 	{
@@ -117,12 +117,17 @@
 
 		foreach( $files as $file )
 		{
-			if( !in_array( $file, $do_not_show ) ) {
+			$class_names = [];
+			foreach ($classes as $class) {
+				$class_names[] = $class->name;
+			}
+
+			if (!in_array($file, $do_not_show) && !in_array(ucfirst($file), $class_names)) {
 
 				if( is_dir("/home/lars/documents/".$file) ) {
-
-					echo "		<span><a href='files.php?d=$file'>$file/</a></span>\n";
-
+?>
+		<span><a href='files.php?d=<?= $file ?>'><?= $file ?>/</a></span>
+<?php
 				} else if(preg_match( '/.*\.pdf$/', $file) ) {
 
 					$parts = explode('.', $file);

@@ -1,6 +1,6 @@
 <?php
 
-	require "/home/web/site/dbi/db.inc";
+	require "/home/web/include/dbi/db.inc";
 
 	$id = $_POST['id'];
 	$description = $_POST['description'];

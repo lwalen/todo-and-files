@@ -36,7 +36,8 @@ function queryClasses() {
 
 function getFiles( $directory ) {
 
-	if( $handle = opendir("/home/lars/documents/".$directory) ) {
+//	if( $handle = opendir("/home/lars/documents/".$directory) ) {
+	if( $handle = opendir($directory) ) {
 		$files = array();
 
 		// prevent getting directories for current classes
@@ -61,7 +62,7 @@ function getFiles( $directory ) {
 
 		while( ($file = readdir($handle)) ) {
 			//	if ( !preg_match($misc_pattern, $file) && !preg_match($course_pattern, $file) && $file != "public" )
-			if ( !preg_match($misc_pattern, $file) && $file != "public" && $file != "field_session")
+			if ( !preg_match($misc_pattern, $file) && $file != "public")
 			{
 				$files[] = $file;
 			}
