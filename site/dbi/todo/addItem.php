@@ -1,6 +1,6 @@
 <?php
 
-	require "/home/web/include/dbi/db.inc";
+	require "/home/web/site/common.php";
 
 	$description = mysql_real_escape_string( $_POST['description'] );
 	$course_id = $_POST['course_id'] != '' ? $_POST['course_id'] : 'NULL';

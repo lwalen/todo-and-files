@@ -75,7 +75,7 @@
 
 	<div class='section files'>
 <?php
-	$files = getFiles($dir);
+	$files = getFiles($basepath.$dir);
 
 	$do_not_show = array();
 	$path = array();

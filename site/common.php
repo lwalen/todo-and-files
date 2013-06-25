@@ -40,28 +40,10 @@ function getFiles( $directory ) {
 	if( $handle = opendir($directory) ) {
 		$files = array();
 
-		// prevent getting directories for current classes
-		/*
-		$classes = queryClasses();
-		$course_pattern = "/";
-		foreach( $classes as $key => $class ) {
-			if( $key != 0 ) {
-				$course_pattern .= "|";
-			}
-			//$course_pattern .= strtolower($class->getDepartment()).$class->getNumber();
-			$course_pattern .= "^".strtolower($class->getAbbreviation());
-			$course_pattern .= "|";
-			$course_pattern .= strtolower($class->getName());
-		}
-		$course_pattern .= "/";
-
-		$course_pattern = str_replace(' ', '_', $course_pattern);
-		 */
 		// prevent getting parent directory, current directory, and hidden directories
-		$misc_pattern = '/^\..*$|\.php/';
+		$misc_pattern = '/^\..*$/';
 
 		while( ($file = readdir($handle)) ) {
-			//	if ( !preg_match($misc_pattern, $file) && !preg_match($course_pattern, $file) && $file != "public" )
 			if ( !preg_match($misc_pattern, $file) && $file != "public")
 			{
 				$files[] = $file;
