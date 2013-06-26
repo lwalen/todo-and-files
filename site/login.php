@@ -21,13 +21,11 @@ if(!function_exists('showLoginPasswordProtect')) {
 
 	// show login form
 	function showLoginPasswordProtect($error_msg) {
-		writeHead();
+		writeHead("walen.me");
 ?>
-	<title>walen.me</title>
-	<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+	<!-- <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
 	<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
-	<link href="/css/main.css" rel="stylesheet" type="text/css" />
-</head>
+</head>-->
 <body>
 	<div class='section'>
 		<h1>walen.me</h1>

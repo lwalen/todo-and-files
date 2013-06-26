@@ -6,13 +6,8 @@
 
 	$uptime = getUptime();
 
-	writeHead();
+	writeHead("walen.me");
 ?>
-	<script src="js/jquery-1.7.2.min.js" type="text/javascript"></script>
-	<script src="js/jquery-ui-1.8.23.custom.min.js" type="text/javascript"></script>
-	<script src="js/todo.js" type="text/javascript"></script>
-	<title>walen.me</title>
-</head>
 <body>
 	<!-- begin title and uptime box -->
 	<div class='section'>
