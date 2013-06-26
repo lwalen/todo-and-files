@@ -3,7 +3,7 @@
 	require_once "/home/web/site/common.php";
 
 	$isClass = FALSE;
-	$basepath = "/home/lars/documents/";
+	$basepath = "/home/lars/";
 
 	if( isset( $_GET['f'] ) ) {
 		$file = $_GET['f'];
@@ -53,6 +53,8 @@
 				}
 			}
 		}
+	} else {
+		$dir = "";
 	}
 
 	// make sure directory name ends in /

@@ -2,12 +2,16 @@
 
 	require "/home/web/site/common.php";
 
-	$description = mysql_real_escape_string( $_POST['description'] );
+	if (!isset($_POST['description'])) {
+		return;
+	}
+
+	$description = mysql_real_escape_string($_POST['description']);
 	$course_id = $_POST['course_id'] != '' ? $_POST['course_id'] : 'NULL';
-	if( $_POST['due_date'] != '' ) {
+	if ($_POST['due_date'] != '') {
 		$due_date = $_POST['due_date'];
 
-		list( $month, $date, $year ) = explode( ".", $due_date );
+		list($month, $date, $year) = explode(".", $due_date);
 
 		$due_date = "'20".$year."-".$month."-".$date."'";
 	} else {
@@ -18,7 +22,7 @@
 	$query .= "VALUES ('$description', $course_id, $due_date)";
 
 
-	$result = mysql_query( $query );
+	$result = mysql_query($query);
 	echo $result;
 
 	$_POST['result'] = $result;

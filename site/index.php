@@ -44,7 +44,7 @@
 			$number = $class->number;
 			$abbreviation = $class->abbreviation;
 ?>
-	<a href='files.php?d=<?= str_replace(' ', '_', $name) ?>'>
+	<a href='files.php?d=documents/<?= str_replace(' ', '_', $name) ?>'>
 		<div class='name'><?= $name ?></div>
 	</a>
 <?php
@@ -126,24 +126,24 @@
 
 				if( is_dir("/home/lars/documents/".$file) ) {
 ?>
-		<span><a href='files.php?d=<?= $file ?>'><?= $file ?>/</a></span>
+		<span><a href='files.php?d=documents/<?= $file ?>'><?= $file ?>/</a></span>
 <?php
 				} else if(preg_match( '/.*\.pdf$/', $file) ) {
 
 					$parts = explode('.', $file);
 					$file = $parts[0];
 					if( is_file("/home/lars/documents/".$file.".tex") ) {
-						echo "		<span><a href='files.php?f=$file.pdf'>$file.pdf</a>";
-						echo " [<a href='files.php?f=$file.tex'>.tex</a>]</span>\n";
+						echo "		<span><a href='files.php?d=documents/&f=$file.pdf'>$file.pdf</a>";
+						echo " [<a href='files.php?d=documents/&f=$file.tex'>.tex</a>]</span>\n";
 
 						$do_not_show[] = $file.".tex";
 					} else {
-						echo "		<span><a href='files.php?f=$file.pdf'>$file.pdf</a></span>\n";
+						echo "		<span><a href='files.php?d=documents/&f=$file.pdf'>$file.pdf</a></span>\n";
 					}
 
 				} else {
 
-					echo "		<span><a href='files.php?f=$file'>$file</a></span>\n";
+					echo "		<span><a href='files.php?d=documents/&f=$file'>$file</a></span>\n";
 
 				}
 			}
