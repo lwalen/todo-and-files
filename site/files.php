@@ -35,56 +35,19 @@ if( isset( $_GET['f'] ) ) {
 	exit;
 }
 
-
 writeHead($dir);
+
 ?>
 <body>
-
 	<div class='section'>
-		<h1><?php echo $dir ?></h1>
+		<h1><?= $dir ?></h1>
 	</div>
 
 	<div class='section files'>
 <?php
 $files = getFiles($basepath.$dir);
 
-$do_not_show = array();
-$path = array();
-
-$path = explode( '/', $dir );
-array_pop($path);
-
-foreach( $files as $file ) {
-
-	if( !in_array( $file, $do_not_show ) ) {
-
-		if( is_dir($basepath.$dir.$file) ) {
-
-			echo "		<p><a href='?d=$dir$file'>$file/</a></p>\n";
-
-		} else if(preg_match( '/.*\.pdf$/', $file) ) {
-
-			$parts = explode('.', $file);
-			$file = $parts[0];
-
-			if( is_file($basepath.$dir.$file.".tex") ) {
-				echo "		<p><a href='?d=$dir&f=$file.pdf'>$file.pdf</a>";
-				echo " [<a href='?d=$dir&f=$file.tex'>.tex</a>]</p>\n";
-
-				$do_not_show[] = $file.".tex";
-			} else {
-				echo "		<p><a href='?d=$dir&f=$file.pdf'>$file.pdf</a></p>\n";
-			}
-
-		} else {
-
-			echo "		<p><a href='?d=$dir&f=$file'>$file</a></p>\n";
-
-		}
-	}
-
-}
-
+printFiles($basepath, $dir, $files);
 ?>
 	</div>
 
@@ -92,6 +55,11 @@ foreach( $files as $file ) {
 	<div class='section'>
 		<a href='/index.php'>home</a>
 <?php
+$path = array();
+
+$path = explode( '/', $dir );
+array_pop($path);
+
 for( $i = 0; $i < count($path) - 1; $i++ ) {  
 	echo "		<div class='right_arrow'></div>\n";
 	echo "		<a href='?d=";

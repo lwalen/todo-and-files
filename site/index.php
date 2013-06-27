@@ -101,48 +101,12 @@
 	$files = getFiles('/home/lars/documents/');
 	$public_files = getFiles('/home/web/site/public/');
 
-	if( empty( $files ) && empty( $public_files ) )
-	{
+	if (empty($files) && empty($public_files)) {
 		echo "			<span id='no_files'>no files</span>\n";
-	}
-
-	if( !empty( $files ) ) 
-	{
-		$do_not_show = array();
-
-		foreach( $files as $file )
-		{
-			$class_names = [];
-			foreach ($classes as $class) {
-				$class_names[] = $class->name;
-			}
-
-			if (!in_array($file, $do_not_show) && !in_array(ucfirst($file), $class_names)) {
-
-				if( is_dir("/home/lars/documents/".$file) ) {
-?>
-		<span><a href='files.php?d=documents/<?= $file ?>'><?= $file ?>/</a></span>
-<?php
-				} else if(preg_match( '/.*\.pdf$/', $file) ) {
-
-					$parts = explode('.', $file);
-					$file = $parts[0];
-					if( is_file("/home/lars/documents/".$file.".tex") ) {
-						echo "		<span><a href='files.php?d=documents/&f=$file.pdf'>$file.pdf</a>";
-						echo " [<a href='files.php?d=documents/&f=$file.tex'>.tex</a>]</span>\n";
-
-						$do_not_show[] = $file.".tex";
-					} else {
-						echo "		<span><a href='files.php?d=documents/&f=$file.pdf'>$file.pdf</a></span>\n";
-					}
-
-				} else {
-
-					echo "		<span><a href='files.php?d=documents/&f=$file'>$file</a></span>\n";
-
-				}
-			}
-		}
+	} 
+	
+	if (!empty($files)) {
+		printFiles("/home/lars/", "documents/", $files, " ");
 	}
 	
 	if( !empty( $public_files ) ) 

@@ -34,18 +34,17 @@ function queryClasses() {
 	return $courseList;
 }
 
-function getFiles( $directory ) {
+function getFiles($directory) {
 
 //	if( $handle = opendir("/home/lars/documents/".$directory) ) {
-	if( $handle = opendir($directory) ) {
+	if ($handle = opendir($directory)) {
 		$files = array();
 
 		// prevent getting parent directory, current directory, and hidden directories
 		$misc_pattern = '/^\..*$/';
 
-		while( ($file = readdir($handle)) ) {
-			if ( !preg_match($misc_pattern, $file) && $file != "public")
-			{
+		while (($file = readdir($handle))) {
+			if (!preg_match($misc_pattern, $file) && $file != "public") {
 				$files[] = $file;
 			}
 		}
@@ -56,6 +55,45 @@ function getFiles( $directory ) {
 		echo "Could not retrieve files";
 	}
 
+}
+
+function printFiles($basepath, $dir, $files, $separator = "\n") {
+	$do_not_show = [];
+
+	if ($separator == "\n") {
+		$tag = "p";
+	} else if ($separator == " ") {
+		$tag = "span";
+	}
+
+
+	foreach ($files as $file) {
+
+		if (!in_array($file, $do_not_show)) {
+
+			if (is_dir($basepath.$dir.$file)) {
+
+				echo "		<$tag><a href='files.php?d=$dir$file'>$file/</a></$tag>\n";
+
+			} else if(preg_match('/.*\.pdf$/', $file)) {
+
+				$parts = explode('.', $file);
+				$file = $parts[0];
+
+				if (is_file($basepath.$dir.$file.".tex")) {
+					echo "		<$tag><a href='files.php?d=$dir&f=$file.pdf'>$file.pdf</a>";
+					echo " [<a href='files.php?d=$dir&f=$file.tex'>.tex</a>]</$tag>\n";
+
+					$do_not_show[] = $file.".tex";
+				} else {
+					echo "		<$tag><a href='files.php?d=$dir&f=$file.pdf'>$file.pdf</a></$tag>\n";
+				}
+			} else {
+				echo "		<$tag><a href='files.php?d=$dir&f=$file'>$file</a></$tag>\n";
+			}
+		}
+
+	}
 }
 
 function getUptime() {
