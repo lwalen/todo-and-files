@@ -7,22 +7,20 @@ if (!(defined("NO_LOGIN") && NO_LOGIN)) {
 	require BASEPATH."login.php";
 }
 
-require INC."dbi/db.inc";
-
 require INC."course.inc";
+require INC."dbi/db.inc";
 require INC."dbi/todo/item.inc";
 require INC."dbi/todo/getItems.php";
 
 function queryClasses() {
-
-	$courseList = array();
+	$courseList = [];
 
 	$query  = "SELECT * FROM courses ";
 	$query .= "ORDER BY number";
 
 	$result = mysql_query($query);
 
-	while( $row = mysql_fetch_array($result) ) {
+	while ($row = mysql_fetch_array($result)) {
 		$course = new Course( $row['id'],
 			$row['department'],
 			$row['number'],
@@ -35,8 +33,6 @@ function queryClasses() {
 }
 
 function getFiles($directory) {
-
-//	if( $handle = opendir("/home/lars/documents/".$directory) ) {
 	if ($handle = opendir($directory)) {
 		$files = array();
 
@@ -64,7 +60,27 @@ function getFiles($directory) {
 	} else {
 		echo "Could not retrieve files";
 	}
+}
 
+function getPublicFiles() {
+	if ($handle = opendir("/home/web/site/public")) {
+		$files = array();
+
+		// prevent getting parent directory, current directory, and hidden files
+		$misc_pattern = '/^\..*$/';
+
+		while (($file = readdir($handle))) {
+			if (!preg_match($misc_pattern, $file)) {
+				$files[] = $file;
+			}
+		}
+
+		natsort($files);
+		closedir($handle);
+		return $files;
+	} else {
+		echo "Could not retrieve files";
+	}
 }
 
 function printFiles($basepath, $dir, $files, $separator = "\n") {

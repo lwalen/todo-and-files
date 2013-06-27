@@ -55,7 +55,7 @@ printFiles($basepath, $dir, $files);
 <!-- Breadcrumbs -->
 	<div class='section'>
 		<a href='/'>walen.me</a>
-		<span class='path-separator'>/</span>
+		<span class='separator'>/</span>
 <?php
 $path = explode( '/', $dir );
 array_pop($path);
@@ -64,9 +64,9 @@ array_shift($path);
 if (count($path) == 0) {
 	echo "		~\n";
 } else {
-	echo "		<a href='?d='>~</a>\n";
+	echo "		<a href='/files.php'>~</a>\n";
 	for( $i = 0; $i < count($path) - 1; $i++ ) {  
-		echo "		<span class='path-separator'>/</span>\n";
+		echo "		<span class='separator'>/</span>\n";
 		echo "		<a href='?d=";
 
 		for( $j = 0; $j <= $i; $j++ ) {
@@ -74,7 +74,7 @@ if (count($path) == 0) {
 		}
 		echo "'>".$path[$i]."</a>\n";
 	}
-		echo "		<span class='path-separator'>/</span>";
+		echo "		<span class='separator'>/</span>";
 		echo "		".array_pop($path);
 }
 ?>

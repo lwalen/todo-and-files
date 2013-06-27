@@ -99,7 +99,7 @@
 
 <?php
 	$files = getFiles('/home/lars/documents/');
-	$public_files = getFiles('/home/web/site/public/');
+	$public_files = getPublicFiles();
 
 	if (empty($files) && empty($public_files)) {
 		echo "			<span id='no_files'>no files</span>\n";
@@ -120,7 +120,6 @@
 			echo "			<span><a href='/public/$file'>$file</a></span>\n";
 		}
 	}
-
 ?>
 		</div>
 	</div>

@@ -1,4 +1,5 @@
 <?php
+
 require_once "common.php";
 require_once "/home/web/include/users.inc";
 
@@ -30,7 +31,7 @@ if(!function_exists('showLoginPasswordProtect')) {
 	<div class='section'>
 		<h1>walen.me</h1>
 		<a href='http://lars.walen.me'>Lars Walen</a>
-		<span style='margin: 0px 10px 0px 10px'> | </span>
+		<span class='separator'> | </span>
 		<a href='http://dailies.walen.me'>Dailies</a>
 	</div>
 
@@ -50,7 +51,7 @@ if(!function_exists('showLoginPasswordProtect')) {
 	<div class='section'>
 		<div id='files'>
 <?php
-		$public_files = getFiles('/home/web/site/public/');
+		$public_files = getPublicFiles();
 
 		if( empty( $public_files ) )
 		{
