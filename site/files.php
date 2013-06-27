@@ -10,7 +10,7 @@ if( isset( $_GET['d'] ) ) {
 		exit(1);
 	}
 } else {
-	$dir = "~";
+	$dir = "";
 }
 
 // make sure directory name ends in /
