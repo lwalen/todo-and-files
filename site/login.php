@@ -3,12 +3,8 @@
 require_once "common.php";
 require_once "/home/web/include/users.inc";
 
-################  SETTINGS BEGIN  ################
-
 // User will be redirected to this page after logout
 define('LOGOUT_URL', 'http://www.walen.me/');
-
-################  SETTINGS END  ################
 
 // logout?
 if(isset($_GET['logout'])) {
@@ -21,7 +17,7 @@ if(isset($_GET['logout'])) {
 if(!function_exists('showLoginPasswordProtect')) {
 
 	// show login form
-	function showLoginPasswordProtect($error_msg) {
+	function showLoginPasswordProtect($error_msg = "") {
 		writeHead("walen.me");
 ?>
 	<!-- <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
@@ -53,12 +49,10 @@ if(!function_exists('showLoginPasswordProtect')) {
 <?php
 		$public_files = getPublicFiles();
 
-		if( empty( $public_files ) )
-		{
+		if (empty($public_files)) {
 			echo "			<span id='no_files'>no public files</span>\n";
 		} else {
-			foreach( $public_files as $file )
-			{
+			foreach ($public_files as $file) {
 				echo "			<a href='/public/$file'>$file</a>\n";
 			}
 		}
@@ -82,14 +76,12 @@ if (isset($_POST['access_password'])) {
 	$pass = $_POST['access_password'];
 	$remember = isset( $_POST['remember_me'] );
 
-	if( md5($pass.$SALT) != md5($PASSWORD.$SALT)) {
-
+	if (md5($pass.$SALT) != md5($PASSWORD.$SALT)) {
 		showLoginPasswordProtect("Incorrect password.");
-
 	} else {
 
 		// set cookie if password was validated
-		if( $remember ) {
+		if ($remember) {
 			setcookie("verify", md5($pass.$SALT), time() + 60*60*24*30, '/');
 		} else {
 			setcookie("verify_session", md5($pass.$SALT), 0, '/');
@@ -102,26 +94,19 @@ if (isset($_POST['access_password'])) {
 } else {
 
 	// check if password cookie is set
-	if( !isset( $_COOKIE['verify']) && !isset($_COOKIE['verify_session'] ) ) {
-		showLoginPasswordProtect("");
+	if (!isset($_COOKIE['verify']) && !isset($_COOKIE['verify_session'])) {
+		showLoginPasswordProtect();
 	}
 
 	// check if cookie is good
-	$found = false;
-
 	$lp = md5($PASSWORD.$SALT);
-	if( isset($_COOKIE['verify']) && $_COOKIE['verify'] == $lp ) {
-		$found = true;
-		setcookie("verify", $lp, time()+60*60*24*30, '/');
-	} else if( isset($_COOKIE['verify_session']) && $_COOKIE['verify_session'] == $lp ) {
-		$found = true;
+	if (isset($_COOKIE['verify']) && $_COOKIE['verify'] == $lp) {
+		setcookie("verify", $lp, time() + 60*60*24*30, '/');
+	} else if (isset($_COOKIE['verify_session']) && $_COOKIE['verify_session'] == $lp) {
 		setcookie("verify_session", $lp, 0, '/');
+	} else {
+		showLoginPasswordProtect();
 	}
-
-	if (!$found) {
-		showLoginPasswordProtect("");
-	}
-
 }
 
 ?>
