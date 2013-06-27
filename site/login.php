@@ -8,8 +8,8 @@ define('LOGOUT_URL', 'http://www.walen.me/');
 
 // logout?
 if(isset($_GET['logout'])) {
-	setcookie("verify", '', 0, '/'); // clear password;
-	setcookie("verify_session", '', 0, '/'); // clear password;
+	setcookie("verify", '', 0, '/'); // clear password
+	setcookie("verify_session", '', 0, '/'); // clear password
 	header('Location: ' . LOGOUT_URL);
 	exit();
 }
