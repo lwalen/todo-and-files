@@ -111,15 +111,6 @@ a:hover, a:active {color: #000;}
 	border-top: 1px solid #AAA;
 }
 
-.right_arrow {
-	display: inline-block;
-	background-image: url(custom-theme/images/ui-icons_888888_256x240.png);
-	background-repeat: no-repeat;
-	background-position: -32px -45px;
-	height: 16px;
-	width: 16px;
-}
-
 #logout {
 	width: 500px;
 	text-align: right;
@@ -135,7 +126,7 @@ a:hover, a:active {color: #000;}
 }
 
 #files span {
-	margin-right: 5px;
+	margin-right: 10px;
 }
 
 #login {
@@ -164,11 +155,15 @@ a:hover, a:active {color: #000;}
 	float: right;
 }
 
-
 .no_classes {
 	color: #555;
 	text-align: center;
 	margin-bottom: 0px;
+}
+
+.path-separator {
+	color: #777;
+	margin: 0px 5px 0px 5px;
 }
 
 /*  Begin bottom area  

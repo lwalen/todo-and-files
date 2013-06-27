@@ -40,14 +40,24 @@ function getFiles($directory) {
 	if ($handle = opendir($directory)) {
 		$files = array();
 
-		// prevent getting parent directory, current directory, and hidden directories
+		// prevent getting parent directory, current directory, and hidden files
 		$misc_pattern = '/^\..*$/';
 
+		// prevent getting classes
+		$classes = queryClasses();
+
+		for ($i = 0; $i < count($classes); $i++) {
+			$classes[$i] = strtolower($classes[$i]->name);
+		}
+
 		while (($file = readdir($handle))) {
-			if (!preg_match($misc_pattern, $file) && $file != "public") {
+			if (!preg_match($misc_pattern, $file) && 
+				 $file != "public" && 
+				 !in_array($file, $classes)) {
 				$files[] = $file;
 			}
 		}
+
 		natsort($files);
 		closedir($handle);
 		return $files;

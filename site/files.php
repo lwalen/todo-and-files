@@ -10,7 +10,7 @@ if( isset( $_GET['d'] ) ) {
 		exit(1);
 	}
 } else {
-	$dir = "";
+	$dir = "~";
 }
 
 // make sure directory name ends in /
@@ -35,42 +35,48 @@ if( isset( $_GET['f'] ) ) {
 	exit;
 }
 
-writeHead($dir);
+$display_dir = "~".(preg_match('/^\//', $dir) ? $dir : "/$dir");
+
+writeHead($display_dir);
 
 ?>
 <body>
 	<div class='section'>
-		<h1><?= $dir ?></h1>
+		<h1><?= $display_dir ?></h1>
 	</div>
 
 	<div class='section files'>
 <?php
 $files = getFiles($basepath.$dir);
-
 printFiles($basepath, $dir, $files);
 ?>
 	</div>
 
 <!-- Breadcrumbs -->
 	<div class='section'>
-		<a href='/index.php'>home</a>
+		<a href='/'>walen.me</a>
+		<span class='path-separator'>/</span>
 <?php
-$path = array();
-
 $path = explode( '/', $dir );
 array_pop($path);
+array_shift($path);
 
-for( $i = 0; $i < count($path) - 1; $i++ ) {  
-	echo "		<div class='right_arrow'></div>\n";
-	echo "		<a href='?d=";
-	$path2[$i] = "";
-	for( $j = 0; $j <= $i; $j++ ) {
-		echo $path[$j]."/";
+if (count($path) == 0) {
+	echo "		~\n";
+} else {
+	echo "		<a href='?d='>~</a>\n";
+	for( $i = 0; $i < count($path) - 1; $i++ ) {  
+		echo "		<span class='path-separator'>/</span>\n";
+		echo "		<a href='?d=";
+
+		for( $j = 0; $j <= $i; $j++ ) {
+			echo $path[$j]."/";
+		}
+		echo "'>".$path[$i]."</a>\n";
 	}
-	echo "'>".$path[$i]."</a>\n";
+		echo "		<span class='path-separator'>/</span>";
+		echo "		".array_pop($path);
 }
-echo "		<div class='right_arrow'></div>\n";
-echo "		".$path[count($path)-1]."\n";
 ?>
 	</div>
 
