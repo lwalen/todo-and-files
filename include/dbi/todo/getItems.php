@@ -9,7 +9,6 @@ function queryItems() {
 	$query .= "t.due_date ";
 	$query .= "FROM todo AS t ";
 	$query .= "LEFT JOIN courses AS c ON t.course_id = c.id ";
-	$query .= "WHERE shown = 1 ";
 	$query .= "ORDER BY ";
 	$query .= "  CASE WHEN t.due_date is null THEN 1 ELSE 0 END, ";
 	$query .= "  t.due_date; ";
