@@ -89,6 +89,14 @@
 	display: none;
 }
 
+.highlight {
+	background-color: #DDD;
+}
+
+.highlight-complete {
+	background-color: #77FF77 !important;
+}
+
 .no_items {
 	color: #555;
 	text-align: center;
