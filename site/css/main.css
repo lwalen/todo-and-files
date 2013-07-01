@@ -5,6 +5,7 @@
 	margin: 20px auto 20px auto;
 	border: 1px solid #AAA;
 	padding: 20px 20px 20px 20px;
+	box-sizing: border-box;
 	font-family: "Droid Sans", Calibri, Helvetica, sans-serif;
 }
 
@@ -13,30 +14,15 @@ h1 {
 	font-weight: 300;
 	font-size: 2em;
 	text-align: center;
-	margin: 10px 0px;
-}
-
-h2 {
-	font-family: Consolas, "Droid Sans Mono", monospace;
-	font-weight: bold;
-	font-size: 1em;
-	text-align: center;
-	font-variant: small-caps;
-	margin: 20px 0px 10px 0px;
+	margin: 10px 0;
+	clear: both;
 }
 
 p {
-	margin: 0px 0px 15px 0px;
+	margin: 0 0 15px 0;
 }
 
-hr {
-	margin: 20px 0px 15px 0px;
-	border: 0;
-	border-bottom: 1px solid #AAA;
-	clear: both
-}
-
-#uptime {
+.uptime {
 	font: .7em "Open Sans", Calibri, Helvetica, sans-serif;
 	font-weight: 600;
 	text-align: center;
@@ -50,11 +36,13 @@ a:hover, a:active {color: #000;}
 
 #notes {
 	height: 42px;
-	margin: 0px auto;
+	margin: 0 auto;
 }
 
-#notes a {color: black}
-
+#notes a {
+	color: black;
+	text-decoration: none;
+}
 .note {
 	width: 42px;
 	height: 42px;
@@ -71,17 +59,6 @@ a:hover, a:active {color: #000;}
 	color: #FFFFFF;
 }
 
-.note .class {
-	font-size: 22px;
-	font-weight: bold;
-}
-
-.note .department {
-	font-size: 18px;
-	font-variant: small-caps;
-	line-height: 1.1em;
-}
-
 #notes .name {
 	display: inline-block;
 	padding: 10px;
@@ -96,74 +73,65 @@ a:hover, a:active {color: #000;}
 	color: #FFFFFF;
 }
 
-#notes a {
-	text-decoration: none;
-}
-
-#no_files {
-	color: #888888
-}
-
 #public_files {
 	color: #AAA;
-	margin: 20px 0px 0px 0px;
+	margin: 20px 0 0 0;
 	padding-top: 5px;
 	border-top: 1px solid #AAA;
 }
 
-#logout {
-	width: 500px;
-	text-align: right;
+.logout {
+	float: right;
 	font-size: .8em;
 	font-family: "Droid Sans", Calibri, Helvetica, sans-serif;
-	position: absolute;
-	text-align: right;
 }
 
 .files {
-	column-count: 2;
-	-webkit-column-count: 2; /* Safari and Chrome */
+	-webkit-columns: 2 auto; /* Safari and Chrome */
+	-moz-columns: 2 auto; /* Firefox */
+	-ms-columns: 2 auto; /* IE */
+	columns: 2 auto;
 }
 
 #files span {
 	margin-right: 10px;
 }
 
-#login {
+.login {
 	margin: 20px auto;
 	width: 200px;
 }
 
-#login #save {
+.login #save {
 	float: left;
 }
 
-#login #error_message {
+.login #error_message {
 	text-align: center;
 	color: red;
 	clear: both;
 	margin-top: 30px;
 }
 
-#login input[type='password'] {
+.login input[type='password'] {
 	width: 200px;
 	margin-bottom: 10px;
 }
 
-#login input[type='submit'] {
+.login input[type='submit'] {
 	border: 1px solid #AAA;
 	float: right;
 }
 
-.no_classes {
-	color: #555;
+.no_content {
+	color: #888;
 	text-align: center;
-	margin-bottom: 0px;
+	margin-bottom: 0;
 }
 
 .separator {
 	color: #777;
-	margin: 0px 5px 0px 5px;
+	margin: 0 5px 0 5px;
 }
 
 /*  Begin bottom area  

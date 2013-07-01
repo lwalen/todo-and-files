@@ -32,6 +32,6 @@ if( $todoItems ) {
 	}
 
 } else {
-	echo "<p class='no_items'>Nothing to do</p>";
+	echo "<p class='no_content'>Nothing to do</p>";
 }
 ?>

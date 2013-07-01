@@ -32,7 +32,7 @@ if(!function_exists('showLoginPasswordProtect')) {
 	</div>
 
 	<div class='section'>
-		<div id='login'>	
+		<div class='login'>	
 			<form method='post' autocomplete='off'>
 				<input type="password" name="access_password" /><br />
 				<div id='save'>save? <input type='checkbox' name='remember_me' value='Yes' /></div>
@@ -50,7 +50,7 @@ if(!function_exists('showLoginPasswordProtect')) {
 		$public_files = getPublicFiles();
 
 		if (empty($public_files)) {
-			echo "			<span id='no_files'>no public files</span>\n";
+			echo "			<span class='no_content'>no public files</span>\n";
 		} else {
 			foreach ($public_files as $file) {
 				echo "			<a href='/public/$file'>$file</a>\n";

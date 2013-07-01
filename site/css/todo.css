@@ -5,11 +5,15 @@
 #todo .item {
 	display: block;
 	float:left;
-	width: 500px;
+	width: 100%;
 	margin: 1px 0px;
 	padding-top: 3px;
 	padding-bottom: 0px;
 	padding-right: 3px;
+}
+
+.item:hover {
+	background-color: #DDD;
 }
 
 #todo input[type="checkbox"] {
@@ -21,7 +25,6 @@
 #todo .description {
 	float: left;
 	padding: 0px 5px;
-	width: 390px;
 	word-wrap: break-word;
 }
 
@@ -36,6 +39,10 @@
 #todo .complete {
 	background-color: #aaffaa;
 	display: inline;
+}
+
+.complete:hover {
+	background-color: #77FF77 !important;
 }
 
 #todo .due_date {
@@ -68,6 +75,7 @@
 
 #todo #add_item {
 	clear: both;
+	width: 100%;
 }
 
 #todo input, #todo select {
@@ -76,7 +84,7 @@
 }
 
 #todo #add_description {
-	width: 300px; 
+	width: 58%; 
 }
 
 #todo #add_due_date {
@@ -87,17 +95,4 @@
 	position: absolute;
 	float: left;
 	display: none;
-}
-
-.highlight {
-	background-color: #DDD;
-}
-
-.highlight-complete {
-	background-color: #77FF77 !important;
-}
-
-.no_items {
-	color: #555;
-	text-align: center;
 }

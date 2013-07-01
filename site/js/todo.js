@@ -60,17 +60,10 @@ $(document).ready(function() {
 		mouseenter: function() {
 			var id = $(this).attr('id').match(/\d+/);
 			$(this).children('.delete').addClass('delete-active');
-			if ($(this).hasClass('complete')) {
-				$(this).addClass('highlight-complete');
-			} else {
-				$(this).addClass('highlight');
-			}
 		},
 		mouseleave: function() {
 			var id = $(this).attr('id').match(/\d+/);
 			$(this).children('.delete').removeClass('delete-active');
-			$(this).removeClass('highlight');
-			$(this).removeClass('highlight-complete');
 		}
 	}, '.item');
 
