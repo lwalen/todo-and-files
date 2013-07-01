@@ -155,9 +155,9 @@ function writeHead($title) {
 	<link href="/css/custom-theme/jquery-ui-1.8.23.custom.css" rel="stylesheet" type="text/css" />
 	<link href="/css/todo.css" rel="stylesheet" type="text/css" />
 	<link href='//fonts.googleapis.com/css?family=Open+Sans:300,600' rel='stylesheet' type='text/css'>
-	<script src="js/jquery-1.7.2.min.js" type="text/javascript"></script>
-	<script src="js/jquery-ui-1.8.23.custom.min.js" type="text/javascript"></script>
-	<script src="js/todo.js" type="text/javascript"></script>
+	<script src="/js/jquery-1.7.2.min.js" type="text/javascript"></script>
+	<script src="/js/jquery-ui-1.8.23.custom.min.js" type="text/javascript"></script>
+	<script src="/js/todo.js" type="text/javascript"></script>
 	<title><?= $title ?></title>
 </head>
 <?php

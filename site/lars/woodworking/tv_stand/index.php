@@ -1,10 +1,15 @@
 <?php
-	require_once "/home/web/site/common.php";
+require_once "/home/web/site/common.php";
 
-	writeHead();
+writeHead("TV Stand");
 ?>
 	<link href="/css/project.css" rel="stylesheet" type="text/css" />
 	<title>Folding TV Stand</title>
+<style>
+	img {
+	width: 100%;
+}
+</style>
 </head>
 <body class='project'>
 	<div class='section'>
@@ -15,7 +20,7 @@
 	<div class='section'>
 		<img src='complete_in_place.jpg' alt='' />
 		<p>
-		I built this stand to hold my TV in my room at college. I made it foldable so that it would be compact for when I eventually returned home, and because I wanted to try to build something with moving pieces.
+I built this stand to hold my TV in my room at college. I made it foldable so that it would be compact for when I eventually returned home, and because I wanted to try to build something with moving pieces.
 		</p>
 	</div>
 

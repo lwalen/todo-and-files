@@ -2,7 +2,7 @@
 define("NO_LOGIN", true);
 require_once "/home/web/site/common.php";
 
-writeHead();
+writeHead("Woodworking");
 ?>
 	<link href="/css/project.css" rel="stylesheet" type="text/css" />
 	<title>Woodworking</title>
