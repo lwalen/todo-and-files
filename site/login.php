@@ -4,7 +4,7 @@ require_once "common.php";
 require_once "/home/web/include/users.inc";
 
 // User will be redirected to this page after logout
-define('LOGOUT_URL', 'http://www.walen.me/');
+define('LOGOUT_URL', '/');
 
 // logout?
 if(isset($_GET['logout'])) {

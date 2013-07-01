@@ -9,6 +9,10 @@
 	font-family: "Droid Sans", Calibri, Helvetica, sans-serif;
 }
 
+.section img {
+	width: 100%;
+}
+
 h1 {
 	font-family: "Open Sans", "Droid Sans", sans-serif;
 	font-weight: 300;
