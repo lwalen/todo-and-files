@@ -1,6 +1,6 @@
 <?php
 
-require_once "/home/web/include/dbi/db.inc";
+require_once "/home/web/site/common.php";
 
 function queryItems() {
 

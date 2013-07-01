@@ -7,10 +7,10 @@ if (!(defined("NO_LOGIN") && NO_LOGIN)) {
 	require BASEPATH."login.php";
 }
 
-require INC."course.inc";
-require INC."dbi/db.inc";
-require INC."dbi/todo/item.inc";
-require INC."dbi/todo/getItems.php";
+require BASEPATH."dbi/course.inc";
+require INC."db.inc";
+require BASEPATH."dbi/todo/item.inc";
+require BASEPATH."dbi/todo/getItems.php";
 
 function queryClasses() {
 	$db = connectToDB();
