@@ -10,5 +10,5 @@
 	$query .= "SET complete=$complete ";
 	$query .= "WHERE id=$id;";
 
-	$result = mysql_query( $query );
+	$result = mysql_query($query);
 ?>

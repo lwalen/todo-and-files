@@ -11,12 +11,12 @@ class Item {
 	public $due_date = "";
 
 	function __construct($id,
-								$description,
-								$complete,
-								$course,
-								$department,
-								$abbreviation,
-								$due_date )
+	                     $description,
+	                     $complete,
+	                     $course,
+	                     $department,
+	                     $abbreviation,
+	                     $due_date )
 	{
 		$months = array(
 			'01' => 'Jan',

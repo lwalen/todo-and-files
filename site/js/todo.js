@@ -10,36 +10,49 @@ function addItem() {
 
 	if( description != "" ) {
 		$.post( "/dbi/todo/addItem.php", { description: description,
-												  course_id: course_id,
-												  due_date: due_date
+			course_id: course_id,
+			due_date: due_date
 		}, function() { 
 			$('#items').load('/todo.php');
 		});
 
 		$('#add_item').find("input[type=text], textarea").val("");
 		$('#add_item').find("select").val("");
+		$('#submit').attr('disabled', 'disabled');
 	}
 }
 
-$(document).ready( function() {
+$(document).ready(function() {
 
 	/*
 	 * Initialize datepicker for adding new items
 	 */
 	$('#add_due_date').datepicker({ showAnim: "", 
-											  dateFormat: "mm.dd.y",
-											  showOtherMonths: true,
-											  selectOtherMonths: true });
+		dateFormat: "mm.dd.y",
+	showOtherMonths: true,
+	selectOtherMonths: true });
+
+	/*
+	 * Enable Add button only if description exists
+	 */
+	$('#todo').on('keyup', '#add_description', function() {
+		if ($('#add_description').val().length == 0) {
+			$('#submit').attr('disabled', 'disabled');
+		} else {
+			$('#submit').removeAttr('disabled');
+		}
+
+	});
 
 	/*
 	 * Allow pressing enter in description box to add item
 	 */
-	$('#todo').on( 'keypress', '#add_description', function(event) {
-		if(event.which == 13) {
+	$('#todo').on('keypress', '#add_description', function(event) {
+		if(event.which == 13 && $('#add_description').val().length > 0) {
 			addItem();
 		}
 	});
-	
+
 	/*
 	 * Show delete button when hovering item
 	 */
@@ -62,8 +75,8 @@ $(document).ready( function() {
 			var id = $(this).parent().attr('id').match(/\d+/);
 			var date = $('#item_' + id + ' .due_date').text();
 			$('#due_date_calendar').datepicker({ inline: true, 
-															 dateFormat: "m.d.y", 
-															 defaultDate: date });
+				dateFormat: "m.d.y", 
+				defaultDate: date });
 			$(document).bind('mousemove', function(e) {
 				$('#due_date_calendar').css({
 					left: e.pageX - 200,
@@ -74,9 +87,9 @@ $(document).ready( function() {
 		},
 		mouseleave: function() {
 			$('#due_date_calendar').datepicker()
-			$(document).unbind('mousemove');
-			$('#due_date_calendar').hide();
-			$('#due_date_calendar').datepicker('destroy');
+		$(document).unbind('mousemove');
+	$('#due_date_calendar').hide();
+	$('#due_date_calendar').datepicker('destroy');
 		}
 	}, '.due_date');
 
@@ -104,13 +117,13 @@ $(document).ready( function() {
 		}
 
 		$.post( "/dbi/todo/updateItem.php", { id: id,
-														description: description,
-														complete: complete },
+			description: description,
+			complete: complete },
 			function() {
 				$('#items').load('/todo.php');
-		});
+			});
 	});
-	
+
 	/*
 	 * Submit item when 'Add' button clicked
 	 */

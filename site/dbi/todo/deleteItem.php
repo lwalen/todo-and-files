@@ -4,6 +4,6 @@
 	$id = $_REQUEST['id'];
 	
 	$query  = "DELETE FROM todo WHERE id = $id; ";
-	mysql_query( $query );
+	mysql_query($query);
 
 ?>

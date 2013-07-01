@@ -82,7 +82,7 @@
 	}
 ?>
 		<input type='text' id='add_due_date' placeholder='mm.dd.yy' size='8'/>
-		<input type='button' id='submit' value='Add'/>
+		<input type='button' id='submit' value='Add' disabled/>
 	</form>
 </div>
 <!-- it's gotta exist somewhere -->

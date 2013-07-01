@@ -15,7 +15,6 @@ function queryItems() {
 
 	$result = mysql_query($query);
 
-	$index = 0;
 	while($row = mysql_fetch_array($result))
 	{
 		$item = new Item( $row['id'],
@@ -26,8 +25,7 @@ function queryItems() {
 			$row['abbreviation'],
 			$row['due_date'] );
 
-		$itemList[$index] = $item;			
-		$index++;
+		$itemList[] = $item;			
 	}
 
 	if( !empty($itemList) ) return $itemList;
