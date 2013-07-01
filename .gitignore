@@ -1,3 +1,4 @@
 .*
 !/.gitignore
 include/users.inc
+include/dbi/db.inc

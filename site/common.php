@@ -13,14 +13,16 @@ require INC."dbi/todo/item.inc";
 require INC."dbi/todo/getItems.php";
 
 function queryClasses() {
+	$db = connectToDB();
+
 	$courseList = [];
 
 	$query  = "SELECT * FROM courses ";
 	$query .= "ORDER BY number";
 
-	$result = mysql_query($query);
+	$result = mysqli_query($db, $query);
 
-	while ($row = mysql_fetch_array($result)) {
+	while ($row = mysqli_fetch_array($result)) {
 		$course = new Course( $row['id'],
 			$row['department'],
 			$row['number'],
@@ -48,10 +50,10 @@ function getFiles($directory) {
 
 		while (($file = readdir($handle))) {
 			if (!preg_match($misc_pattern, $file) && 
-				 $file != "public" && 
-				 !in_array($file, $classes)) {
-				$files[] = $file;
-			}
+				$file != "public" && 
+				!in_array($file, $classes)) {
+					$files[] = $file;
+				}
 		}
 
 		natsort($files);

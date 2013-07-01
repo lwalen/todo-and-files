@@ -6,6 +6,8 @@
 		return;
 	}
 
+	$db = connectToDB();
+
 	$description = mysql_real_escape_string($_POST['description']);
 	$course_id = $_POST['course_id'] != '' ? $_POST['course_id'] : 'NULL';
 	if ($_POST['due_date'] != '') {
@@ -22,7 +24,7 @@
 	$query .= "VALUES ('$description', $course_id, $due_date)";
 
 
-	$result = mysql_query($query);
+	$result = mysqli_query($db, $query);
 	echo $result;
 
 	$_POST['result'] = $result;

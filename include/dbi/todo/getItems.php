@@ -1,6 +1,10 @@
 <?php
 
+require_once "/home/web/include/dbi/db.inc";
+
 function queryItems() {
+
+	$db = connectToDB();
 
 	$itemList = [];
 
@@ -13,9 +17,9 @@ function queryItems() {
 	$query .= "  CASE WHEN t.due_date is null THEN 1 ELSE 0 END, ";
 	$query .= "  t.due_date; ";
 
-	$result = mysql_query($query);
+	$result = mysqli_query($db, $query);
 
-	while($row = mysql_fetch_array($result))
+	while($row = mysqli_fetch_array($result))
 	{
 		$item = new Item( $row['id'],
 			$row['description'],
