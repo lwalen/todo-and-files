@@ -144,20 +144,40 @@ function getUptime() {
 	return $uptime;
 }
 
-function writeHead($title) {
+function getBytes($val) {
+    $val = trim($val);
+    $last = strtolower($val[strlen($val)-1]);
+    switch($last) {
+        // The 'G' modifier is available since PHP 5.1.0
+        case 'g':
+            $val *= 1024;
+        case 'm':
+            $val *= 1024;
+        case 'k':
+            $val *= 1024;
+    }
+
+    return $val;
+}
+
+function writeHead($title, $extra="") {
 ?>
 
 <!DOCTYPE html>
 <head>
 	<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
 	<link href="/favicon.png" rel="icon" type="image/png" />
-	<link href="/css/main.css" rel="stylesheet" type="text/css" />
 	<link href="/css/custom-theme/jquery-ui-1.8.23.custom.css" rel="stylesheet" type="text/css" />
-	<link href="/css/todo.css" rel="stylesheet" type="text/css" />
 	<link href='//fonts.googleapis.com/css?family=Open+Sans:300,600' rel='stylesheet' type='text/css'>
+	<link href="/css/main.css" rel="stylesheet" type="text/css" />
+	<link href="/css/todo.css" rel="stylesheet" type="text/css" />
+
 	<script src="/js/jquery-1.7.2.min.js" type="text/javascript"></script>
 	<script src="/js/jquery-ui-1.8.23.custom.min.js" type="text/javascript"></script>
 	<script src="/js/todo.js" type="text/javascript"></script>
+
+	<?= $extra ?>
+
 	<title><?= $title ?></title>
 </head>
 <?php

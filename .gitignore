@@ -1,3 +1,5 @@
 .*
 !/.gitignore
-include/
+include/*
+site/artists_with_one_song
+site/lars
