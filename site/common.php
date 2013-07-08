@@ -106,6 +106,7 @@ function printFiles($basepath, $dir, $files, $separator = "\n") {
 				} else {
 					echo "		<$tag><a href='files.php?d=$dir&f=$file.pdf'>$file.pdf</a></$tag>\n";
 				}
+			// Markdown files over http to use Chrome extension
 			} else if(preg_match('/.*\.md$/', $file)) {
 				echo "		<$tag><a href='http://walen.me/files.php?d=$dir&f=$file'>$file</a></$tag>\n";
 			} else {

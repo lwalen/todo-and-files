@@ -128,7 +128,12 @@ if( !empty( $public_files ) )
 	echo "<div id='public_files'>Public</div>";
 	foreach( $public_files as $file )
 	{
-		echo "			<span><a href='/public/$file'>$file</a></span>\n";
+		// Markdown files over http to use Chrome extension
+		if (preg_match('/.*\.md$/', $file)) {
+			echo "			<span><a href='http://walen.me/public/$file'>$file</a></span>\n";
+		} else {
+			echo "			<span><a href='/public/$file'>$file</a></span>\n";
+		}
 	}
 }
 ?>
