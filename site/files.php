@@ -21,13 +21,14 @@ if( !preg_match( "/^.*\/$/", $dir ) ) {
 if( isset( $_GET['f'] ) ) {
 	$file = $_GET['f'];
 
+
 	// output certain files as plain text
 	if (preg_match('/^.*\.(tex|py|s|sh)$/', $file) || !mime_content_type($basepath.$dir.$file)) {
 		header('Content-Type: text/plain');
 	} else {
 		header('Content-Type: '.mime_content_type($basepath.$dir.$file));
 	}
-	header('Content-Disposition: inline; filename='.$file);
+	header("Content-Disposition: inline; filename=$file");
 	header('Content-Transfer-Encoding: binary');
 	header('Content-Length: '.filesize($basepath.$dir.$file));
 	header('Accept-Ranges: bytes');

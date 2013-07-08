@@ -85,7 +85,6 @@ function printFiles($basepath, $dir, $files, $separator = "\n") {
 		$tag = "span";
 	}
 
-
 	foreach ($files as $file) {
 
 		if (!in_array($file, $do_not_show)) {
@@ -107,6 +106,8 @@ function printFiles($basepath, $dir, $files, $separator = "\n") {
 				} else {
 					echo "		<$tag><a href='files.php?d=$dir&f=$file.pdf'>$file.pdf</a></$tag>\n";
 				}
+			} else if(preg_match('/.*\.md$/', $file)) {
+				echo "		<$tag><a href='http://walen.me/files.php?d=$dir&f=$file'>$file</a></$tag>\n";
 			} else {
 				echo "		<$tag><a href='files.php?d=$dir&f=$file'>$file</a></$tag>\n";
 			}
@@ -116,9 +117,7 @@ function printFiles($basepath, $dir, $files, $separator = "\n") {
 }
 
 function getUptime() {
-	$file = @fopen('/proc/uptime', 'r');
-	if (!$file) return 'Opening of /proc/uptime failed!';
-	$data = @fread($file, 128);
+	$data = file_get_contents('/proc/uptime');
 	if ($data === false) return 'fread() failed on /proc/uptime!';
 	$upsecs = (int)substr($data, 0, strpos($data, ' '));
 	$up = Array (
@@ -127,7 +126,7 @@ function getUptime() {
 		'minutes' => $data/60%60,
 		'seconds' => $data%60
 	);
-	$uptime  = "";
+	$uptime = "";
 	if( $up['days'] != 0 ) {
 		$uptime .= $up['days'];
 		$uptime .= $up['days'] == 1 ? " day " : " days ";

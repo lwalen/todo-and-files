@@ -8,7 +8,7 @@
 
 	$db = connectToDB();
 
-	$description = mysql_real_escape_string($_POST['description']);
+	$description = mysqli_real_escape_string($db, $_POST['description']);
 	$course_id = $_POST['course_id'] != '' ? $_POST['course_id'] : 'NULL';
 	if ($_POST['due_date'] != '') {
 		$due_date = $_POST['due_date'];
@@ -22,7 +22,6 @@
 
 	$query  = "INSERT INTO todo (description, course_id, due_date) ";
 	$query .= "VALUES ('$description', $course_id, $due_date)";
-
 
 	$result = mysqli_query($db, $query);
 	echo $result;

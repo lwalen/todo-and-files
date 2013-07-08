@@ -7,8 +7,8 @@ function addItem() {
 	var course_id = $('#add_class').val();
 	var due_date = $('#add_due_date').val();
 
-
-	if( description != "" ) {
+	console.log(description);
+	if (description != "") {
 		$.post( "/dbi/todo/addItem.php", { description: description,
 			course_id: course_id,
 			due_date: due_date
