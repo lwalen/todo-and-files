@@ -6,9 +6,9 @@ $todoItems = queryItems();
 
 $courses = queryClasses();
 
-if( $todoItems ) {
+if ($todoItems) {
 
-	foreach( $todoItems as $item ) {
+	foreach ($todoItems as $item) {
 
 		$id = $item->id;
 		$description = $item->description;
@@ -20,10 +20,15 @@ if( $todoItems ) {
 ?>
 <div id='item_<?= $id ?>' class='item<?= $complete ? ' complete' : '' ?>'>
 	<input type='checkbox'<?= $complete ? " checked" : "" ?> />
-	<div class='description'><?= "\n\t\t".$description ?>
-<?php if( $abbreviation ) { ?>
-<span class='course' title='<?= $department." ".$course ?>'><?= $abbreviation ?></span>
-<?php	} ?>
+	<div class='description'>
+<?php 
+echo preg_replace('@(http)?(s)?(://)?(([-\w]+\.)+([^\s]+)+[^,.\s])@', '<a href="http$2://$4">$1$2$3$4</a>', $description);
+?>
+<?php 
+if ($abbreviation) {
+	echo "<span class='course' title='$department $course'>$abbreviation</span>";
+} 
+?>
 	</div>
 	<div class='delete'></div>
 	<div class='due_date'><?= $due_date ? $due_date : '' ?></div>
