@@ -77,7 +77,7 @@ if (isset($_POST['access_password'])) {
 
 	$pass = $_POST['access_password'];
 	$remember = isset( $_POST['remember_me'] );
-	$hash = password_hash($PASSWORD, PASSWORD_DEFAULT);
+	$hash = password_hash($PASSWORD, PASSWORD_DEFAULT, $SALT);
 
 	if (!password_verify($pass, $hash)) {
 		showLoginPasswordProtect("Incorrect password.");
@@ -102,7 +102,7 @@ if (isset($_POST['access_password'])) {
 	}
 
 	// check if cookie is good
-	$hash = password_hash($PASSWORD, PASSWORD_DEFAULT);
+	$hash = password_hash($PASSWORD, PASSWORD_DEFAULT, $SALT);
 	if (isset($_COOKIE['verify']) && $_COOKIE['verify'] == $hash) {
 		setcookie("verify", $hash, time() + 60*60*24*30, '/');
 	} else if (isset($_COOKIE['verify_session']) && $_COOKIE['verify_session'] == $hash) {
