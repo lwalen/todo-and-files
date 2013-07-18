@@ -23,20 +23,21 @@ if ($todoItems) {
 	<div class='description'>
 <?php 
 echo preg_replace('@(http)?(s)?(://)?(([-\w]+\.)+([^\s]+)+[^,.\s])@', '<a href="http$2://$4">$1$2$3$4</a>', $description);
-?>
-<?php 
+
 if ($abbreviation) {
 	echo "<span class='course' title='$department $course'>$abbreviation</span>";
 } 
 ?>
 	</div>
 	<div class='delete'></div>
-	<div class='due_date'><?= $due_date ? $due_date : '' ?></div>
+	<div class='due_date'><?= $due_date ?></div>
 </div>
 <?php
 	}
 
 } else {
-	echo "<p class='no_content'>Nothing to do</p>";
+?>
+	<p class='no_content'>Nothing to do</p>
+<?php
 }
 ?>
