@@ -77,16 +77,17 @@ if (isset($_POST['access_password'])) {
 
 	$pass = $_POST['access_password'];
 	$remember = isset( $_POST['remember_me'] );
+	$hash = password_hash($PASSWORD, PASSWORD_DEFAULT);
 
-	if (md5($pass.$SALT) != md5($PASSWORD.$SALT)) {
+	if (!password_verify($pass, $hash)) {
 		showLoginPasswordProtect("Incorrect password.");
 	} else {
 
 		// set cookie if password was validated
 		if ($remember) {
-			setcookie("verify", md5($pass.$SALT), time() + 60*60*24*30, '/');
+			setcookie("verify", $hash, time() + 60*60*24*30, '/');
 		} else {
-			setcookie("verify_session", md5($pass.$SALT), 0, '/');
+			setcookie("verify_session", $hash, 0, '/');
 		} 
 
 		unset($_POST['access_password']);
@@ -101,11 +102,11 @@ if (isset($_POST['access_password'])) {
 	}
 
 	// check if cookie is good
-	$lp = md5($PASSWORD.$SALT);
-	if (isset($_COOKIE['verify']) && $_COOKIE['verify'] == $lp) {
-		setcookie("verify", $lp, time() + 60*60*24*30, '/');
-	} else if (isset($_COOKIE['verify_session']) && $_COOKIE['verify_session'] == $lp) {
-		setcookie("verify_session", $lp, 0, '/');
+	$hash = password_hash($PASSWORD, PASSWORD_DEFAULT);
+	if (isset($_COOKIE['verify']) && $_COOKIE['verify'] == $hash) {
+		setcookie("verify", $hash, time() + 60*60*24*30, '/');
+	} else if (isset($_COOKIE['verify_session']) && $_COOKIE['verify_session'] == $hash) {
+		setcookie("verify_session", $hash, 0, '/');
 	} else {
 		showLoginPasswordProtect();
 	}
