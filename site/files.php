@@ -36,7 +36,8 @@ if( isset( $_GET['f'] ) ) {
 	exit;
 }
 
-$display_dir = "~".(preg_match('/^\//', $dir) ? $dir : "/$dir");
+$dir = preg_match('/^\//', $dir) ? $dir : "/$dir";
+$display_dir = "~$dir";
 
 writeHead($display_dir);
 
@@ -58,7 +59,7 @@ printFiles($basepath, $dir, $files);
 		<a href='/'>walen.me</a>
 		<span class='separator'>/</span>
 <?php
-$path = explode( '/', $dir );
+$path = explode('/', $dir);
 array_pop($path);
 array_shift($path);
 
@@ -66,17 +67,17 @@ if (count($path) == 0) {
 	echo "		~\n";
 } else {
 	echo "		<a href='/files.php'>~</a>\n";
-	for( $i = 0; $i < count($path) - 1; $i++ ) {  
+	for ($i = 0; $i < count($path) - 1; $i++) {  
 		echo "		<span class='separator'>/</span>\n";
 		echo "		<a href='?d=";
 
-		for( $j = 0; $j <= $i; $j++ ) {
-			echo $path[$j]."/";
+		for ($j = 0; $j <= $i; $j++) {
+			echo $path[$j], "/";
 		}
-		echo "'>".$path[$i]."</a>\n";
+		echo "'>{$path[$i]}</a>\n";
 	}
-		echo "		<span class='separator'>/</span>";
-		echo "		".array_pop($path);
+	echo "		<span class='separator'>/</span>";
+	echo "		", array_pop($path);
 }
 ?>
 	</div>

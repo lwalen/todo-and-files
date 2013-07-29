@@ -119,7 +119,7 @@ function printFiles($basepath, $dir, $files, $separator = "\n") {
 
 function getUptime() {
 	$data = file_get_contents('/proc/uptime');
-	if ($data === false) return 'fread() failed on /proc/uptime!';
+	if ($data === false) return 'failed to read /proc/uptime';
 	$upsecs = (int)substr($data, 0, strpos($data, ' '));
 	$up = Array (
 		'days' => floor($data/60/60/24),
