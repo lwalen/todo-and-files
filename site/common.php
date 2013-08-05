@@ -86,35 +86,37 @@ function printFiles($basepath, $dir, $files, $separator = "\n") {
 	}
 
 	foreach ($files as $file) {
-
 		if (!in_array($file, $do_not_show)) {
+			$file_tex = str_replace('pdf', 'tex', $file);
 
+			// Directory
 			if (is_dir($basepath.$dir.$file)) {
-
 				echo "		<$tag><a href='files.php?d=$dir$file'>$file/</a></$tag>\n";
-
-			} else if(preg_match('/.*\.pdf$/', $file)) {
-
-				$parts = explode('.', $file);
-				$file = $parts[0];
-
-				if (is_file($basepath.$dir.$file.".tex")) {
-					echo "		<$tag><a href='files.php?d=$dir&f=$file.pdf'>$file.pdf</a>";
-					echo " [<a href='files.php?d=$dir&f=$file.tex'>.tex</a>]</$tag>\n";
-
-					$do_not_show[] = $file.".tex";
-				} else {
-					echo "		<$tag><a href='files.php?d=$dir&f=$file.pdf'>$file.pdf</a></$tag>\n";
-				}
+				
+			// PDF with TeX
+			} else if (preg_match('/.*\.pdf$/', $file) && is_file($basepath.$dir.$file_tex)) {
+				echo "		<$tag>", fileLink($dir, $file);
+				echo " [<a href='files.php?d=$dir&f=$file_tex'>.tex</a>]</$tag>\n";
+				$do_not_show[] = $file_tex;
+				
 			// Markdown files over http to use Chrome extension
-			} else if(preg_match('/.*\.md$/', $file)) {
+			} else if (preg_match('/.*\.md$/', $file)) {
 				echo "		<$tag><a href='http://walen.me/files.php?d=$dir&f=$file'>$file</a></$tag>\n";
+				
+			// Regular file
 			} else {
-				echo "		<$tag><a href='files.php?d=$dir&f=$file'>$file</a></$tag>\n";
+				echo "		<$tag>", fileLink($dir, $file), "</$tag>\n";
 			}
 		}
-
 	}
+}
+
+function fileLink($dir, $file) {
+	$link = "<a href='files.php?d=$dir&f=$file' title='$file'>";
+	if (strlen($file) > 25) {
+		$file = substr($file, 0, 25)."...";
+	}
+	return $link.$file."</a>";
 }
 
 function getUptime() {
