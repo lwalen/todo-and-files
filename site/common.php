@@ -168,7 +168,7 @@ function writeHead($title, $extra="") {
 <!DOCTYPE html>
 <head>
 	<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
-	<link href="/favicon.png" rel="icon" type="image/png" />
+	<link href="/favicon.ico" rel="shortcut icon" />
 	<link href="/css/custom-theme/jquery-ui-1.8.23.custom.css" rel="stylesheet" type="text/css" />
 	<link href='//fonts.googleapis.com/css?family=Open+Sans:300,600' rel='stylesheet' type='text/css'>
 	<link href="/css/main.css" rel="stylesheet" type="text/css" />
