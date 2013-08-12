@@ -1,4 +1,5 @@
 <?php
+define("NO_LOGIN", true);
 require_once "common.php";
 
 writeHead("404");
