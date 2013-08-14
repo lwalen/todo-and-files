@@ -50,8 +50,6 @@ function getFiles($directory) {
 		natsort($files);
 		closedir($handle);
 		return $files;
-	} else {
-		echo "Could not retrieve files";
 	}
 }
 

@@ -49,13 +49,17 @@ writeHead($display_dir);
 
 	<div class='section files'>
 <?php
-$files = getFiles($basepath.$dir);
-if (count($files) == 0) {
+if (is_dir($basepath.$dir)) {
+	$files = getFiles($basepath.$dir);
+	if (count($files) == 0) {
 ?>
 	<span class="no_content">empty</span>
 <?php
+	} else {
+		printFiles($basepath, $dir, $files);
+	}
 } else {
-	printFiles($basepath, $dir, $files);
+	echo "could not open specified directory";
 }
 ?>
 	</div>
