@@ -34,11 +34,11 @@ if( empty($classes) ) {
 	{
 		$id = $class->id;
 		$name = strtolower($class->name);
-		$department = strtolower($class->department);
+		$department = $class->department;
 		$number = $class->number;
 		$abbreviation = $class->abbreviation;
 ?>
-	<a href='files.php?d=/documents/<?= str_replace(' ', '_', $name) ?>'>
+	<a href='files.php?d=/documents/<?= str_replace(' ', '_', $name) ?>' title='<?= $department, " ", $number ?>'>
 		<div class='name'><?= $name ?></div>
 	</a>
 <?php
