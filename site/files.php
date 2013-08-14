@@ -50,7 +50,13 @@ writeHead($display_dir);
 	<div class='section files'>
 <?php
 $files = getFiles($basepath.$dir);
-printFiles($basepath, $dir, $files);
+if (count($files) == 0) {
+?>
+	<span class="no_content">empty</span>
+<?php
+} else {
+	printFiles($basepath, $dir, $files);
+}
 ?>
 	</div>
 

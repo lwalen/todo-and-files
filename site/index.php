@@ -101,7 +101,7 @@ $files = [];
 // prevent getting classes
 
 for ($i = 0; $i < count($classes); $i++) {
-	$classes[$i] = strtolower($classes[$i]->name);
+	$classes[$i] = str_replace(' ', '_', strtolower($classes[$i]->name));
 }
 
 //		while (($file = readdir($handle))) {

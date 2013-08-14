@@ -2,5 +2,6 @@
 !/.gitignore
 site/artists_with_one_song
 site/lars
+site/postfixadmin
 include/db.inc
 include/users.inc
