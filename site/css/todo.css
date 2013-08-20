@@ -84,7 +84,10 @@
 }
 
 #todo #add_description {
-	width: 56%; 
+	width: 55%; 
+}
+
+#todo #add_class {
 }
 
 #todo #add_due_date {

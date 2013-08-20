@@ -26,7 +26,7 @@ if(!function_exists('showLoginPasswordProtect')) {
 <body>
 	<div class='section'>
 		<h1>walen.me</h1>
-		<a href='//walen.me/lars'>Lars Walen</a>
+		<a href='http://lars.walen.me/'>Lars Walen</a>
 		<span class='separator'> | </span>
 		<a href='//dailies.walen.me'>Dailies</a>
 		<span class='separator'> | </span>
