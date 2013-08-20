@@ -53,6 +53,7 @@ a:hover, a:active { color: #000; }
 	margin-right: 8px;
 	font-family: Calibri, "Open Sans", sans-serif;
 	background-color: #BAD6D4;
+	font-size: .9em;
 }
 
 #notes .name:hover {
