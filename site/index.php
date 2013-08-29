@@ -117,7 +117,7 @@ if (empty($files) && empty($public_files)) {
 } 
 
 if (!empty($files)) {
-	printFiles("/home/lars", "/documents/", $files, " ");
+	printFiles("/home/lars", "/documents/", $files, " ", false);
 ?>
 		<span><a href='files.php'>~</a></span>
 <?php

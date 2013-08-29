@@ -74,7 +74,7 @@ function getPublicFiles() {
 	}
 }
 
-function printFiles($basepath, $dir, $files, $separator = "\n") {
+function printFiles($basepath, $dir, $files, $separator = "\n", $download = true) {
 	$do_not_show = [];
 
 	if ($separator == "\n") {
@@ -87,24 +87,31 @@ function printFiles($basepath, $dir, $files, $separator = "\n") {
 		if (!in_array($file, $do_not_show)) {
 			$file_tex = str_replace('pdf', 'tex', $file);
 
+			echo "<$tag class='file'>";
+
 			// Directory
 			if (is_dir($basepath.$dir.$file)) {
-				echo "		<$tag><a href='files.php?d=$dir$file'>$file/</a></$tag>\n";
+				echo "<a href='files.php?d=$dir$file'>$file/</a>";
 				
 			// PDF with TeX
 			} else if (preg_match('/.*\.pdf$/', $file) && is_file($basepath.$dir.$file_tex)) {
-				echo "		<$tag>", fileLink($dir, $file);
-				echo " [<a href='files.php?d=$dir&f=$file_tex'>.tex</a>]</$tag>\n";
+				echo fileLink($dir, $file);
+				echo " [<a href='files.php?d=$dir&f=$file_tex'>.tex</a>]";
+				if ($download) echo downloadLink($dir, $file);
 				$do_not_show[] = $file_tex;
 				
 			// Markdown files over http to use Chrome extension
 			} else if (preg_match('/.*\.md$/', $file)) {
-				echo "		<$tag><a href='http://walen.me/files.php?d=$dir&f=$file'>$file</a></$tag>\n";
+				echo "<a href='http://walen.me/files.php?d=$dir&f=$file'>$file</a>";
+				if ($download) echo downloadLink($dir, $file);
 				
 			// Regular file
 			} else {
-				echo "		<$tag>", fileLink($dir, $file), "</$tag>\n";
+				echo fileLink($dir, $file);
+				if ($download) echo downloadLink($dir, $file);
 			}
+
+			echo "</$tag>\n";
 		}
 	}
 }
@@ -115,6 +122,10 @@ function fileLink($dir, $file) {
 		$file = substr($file, 0, 25)."...";
 	}
 	return $link.$file."</a>";
+}
+
+function downloadLink($dir, $file) {
+	return "<button type='submit' name='download' value='$dir$file' class='download'></button>";
 }
 
 function getUptime() {
@@ -175,6 +186,7 @@ function writeHead($title, $extra="") {
 	<script src="/js/jquery-1.7.2.min.js" type="text/javascript"></script>
 	<script src="/js/jquery-ui-1.8.23.custom.min.js" type="text/javascript"></script>
 	<script src="/js/todo.js" type="text/javascript"></script>
+	<script src="/js/files.js" type="text/javascript"></script>
 
 	<?= $extra ?>
 

@@ -4,9 +4,20 @@ require_once "/home/web/site/common.php";
 
 $basepath = "/home/lars/";
 
-if( isset( $_GET['d'] ) ) {
+if (isset($_POST['download'])) {
+	$path = $_POST['download'];
+	header('Content-Type: '.mime_content_type($basepath.$path));
+	header('Content-Disposition: attachment; filename='.array_pop(explode('/', $path)));
+	header('Content-Transfer-Encoding: binary');
+	header('Content-Length: '.filesize($basepath.$path));
+	header('Accept-Ranges: bytes');
+	readfile($basepath.$path);
+	exit;
+}
+
+if (isset($_GET['d'])) {
 	$dir = $_GET['d'];
-	if( preg_match( '/\.\./', $dir ) ) {
+	if (preg_match('/\.\./', $dir)) {
 		exit(1);
 	}
 } else {
@@ -56,7 +67,11 @@ if (is_dir($basepath.$dir)) {
 	<span class="no_content">empty</span>
 <?php
 	} else {
-		printFiles($basepath, $dir, $files);
+?>
+		<form action='files.php' method='post'>
+<?php printFiles($basepath, $dir, $files) ?>
+		</form>
+<?php
 	}
 } else {
 	echo "could not open specified directory";
