@@ -26,7 +26,12 @@ if(!function_exists('showLoginPasswordProtect')) {
 <body>
 	<div class='section'>
 		<h1>walen.me</h1>
-		<a href='http://lars.walen.me/'>Lars Walen</a>
+<?php
+$people = queryPeople();
+foreach ($people as $person) {
+	echo "	<a href='{$person->website}'>{$person->name}</a>";
+}
+?>
 	</div>
 
 	<div class='section'>

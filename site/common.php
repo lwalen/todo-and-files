@@ -3,14 +3,15 @@
 define("BASEPATH", "/home/web/site/");
 define("INC", "/home/web/include/");
 
+require BASEPATH."dbi/course.inc";
+require BASEPATH."dbi/person.inc";
+require BASEPATH."dbi/todo/item.inc";
+require BASEPATH."dbi/todo/getItems.php";
+require INC."db.inc";
+
 if (!(defined("NO_LOGIN") && NO_LOGIN)) {
 	require BASEPATH."login.php";
 }
-
-require BASEPATH."dbi/course.inc";
-require INC."db.inc";
-require BASEPATH."dbi/todo/item.inc";
-require BASEPATH."dbi/todo/getItems.php";
 
 function queryClasses() {
 	$db = connectToDB();
@@ -32,6 +33,26 @@ function queryClasses() {
 	}
 
 	return $courseList;
+}
+
+function queryPeople() {
+	$db = connectToDB();
+
+	$peopleList = [];
+
+	$query  = "SELECT * FROM people ";
+	$query .= "ORDER BY id;";
+
+	$result = mysqli_query($db, $query);
+
+	while ($row = mysqli_fetch_array($result)) {
+		$person = new Person($row['id'],
+			$row['name'],
+			$row['website']);
+		$peopleList[] = $person;
+	}
+
+	return $peopleList;
 }
 
 function getFiles($directory) {
