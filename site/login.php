@@ -27,10 +27,6 @@ if(!function_exists('showLoginPasswordProtect')) {
 	<div class='section'>
 		<h1>walen.me</h1>
 		<a href='http://lars.walen.me/'>Lars Walen</a>
-		<span class='separator'> | </span>
-		<a href='//dailies.walen.me'>Dailies</a>
-		<span class='separator'> | </span>
-		<a href='//walen.me/artists_with_one_song'>Artists with one song</a>
 	</div>
 
 	<div class='section'>
