@@ -6,10 +6,23 @@ $todoItems = queryItems();
 
 $courses = queryClasses();
 
+$no_date = true;
+
+$previous_date = null;
+
+function week($date) {
+	if ($date == "") {
+		return null;
+	}
+
+	$date = explode(".", $date);
+	$date = mktime(0, 0, 0, $date[0], $date[1], $date[2]);
+	return (int)date('W', $date);
+}
+
 if ($todoItems) {
 
 	foreach ($todoItems as $item) {
-
 		$id = $item->id;
 		$description = $item->description;
 		$complete = $item->complete;
@@ -17,6 +30,13 @@ if ($todoItems) {
 		$department = $item->department;
 		$abbreviation = $item->abbreviation;
 		$due_date = $item->due_date;
+
+		if ($previous_date != null
+		    && (week($previous_date) < week($due_date)
+		    || week($due_date) == null)) {
+			echo "<hr>\n";			
+		}
+
 ?>
 <div id='item_<?= $id ?>' class='item<?= $complete ? ' complete' : '' ?>'>
 	<input type='checkbox'<?= $complete ? " checked" : "" ?> />
@@ -33,8 +53,8 @@ if ($abbreviation) {
 	<div class='due_date'><?= $due_date ?></div>
 </div>
 <?php
+		$previous_date = $due_date;
 	}
-
 } else {
 ?>
 	<p class='no_content'>Nothing to do</p>
