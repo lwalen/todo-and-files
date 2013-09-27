@@ -86,6 +86,7 @@ if (count($classes) > 0) {
 </div>
 <!-- it's gotta exist somewhere -->
 <div id='due_date_calendar'></div>
+<input type='button' value='Remove complete' class='remove_complete'/>
 
 		</div>
 	</div>
