@@ -1,7 +1,7 @@
 <?php
 
 require_once "common.php";
-require_once "/home/web/include/users.inc";
+require_once "/srv/http/todo-list-and-file-browser/include/users.inc";
 
 // User will be redirected to this page after logout
 define('LOGOUT_URL', '/');

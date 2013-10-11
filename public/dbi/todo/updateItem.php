@@ -1,6 +1,6 @@
 <?php
 
-	require "/home/web/site/common.php";
+	require "/srv/http/todo-list-and-file-browser/public/common.php";
 
 	$db = connectToDB();
 

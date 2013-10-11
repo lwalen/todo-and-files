@@ -60,13 +60,15 @@ if( empty($classes) ) {
 			</div> <!-- end items -->
 
 <div id='add_item'>
-	<form>
-		<input type='text' id='add_description' />
+	<table>
+		<tr>
+			<td class='expand'><input type='text' id='add_description' /></td>
 <?php
 if (count($classes) > 0) {
 ?>
-		<select id='add_class'>
-			<option></option>
+			<td class='shrink'>
+				<select id='add_class'>
+					<option></option>
 <?php
 	foreach( $classes as $class ) {
 		$id = $class->id;
@@ -76,17 +78,20 @@ if (count($classes) > 0) {
 		echo "			<option value='$id'>$abbreviation</option>\n";
 	}	
 ?>
-		</select>
+				</select>
+			</td>
 <?php
 }
 ?>
-		<input type='text' id='add_due_date' placeholder='mm.dd.yy' size='8'/>
-		<input type='button' id='submit' value='Add' disabled/>
-	</form>
+			<td class='shrink'><input type='text' id='add_due_date' placeholder='mm.dd.yy' size='8'/></td>
+			<td class='shrink'><input type='button' id='submit' value='Add' disabled/></td>
+		</tr>
+	</table>
 </div>
+<input type='button' value='Clear Complete' class='remove_complete'/>
+
 <!-- it's gotta exist somewhere -->
 <div id='due_date_calendar'></div>
-<input type='button' value='Remove complete' class='remove_complete'/>
 
 		</div>
 	</div>

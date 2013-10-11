@@ -1,7 +1,7 @@
 <?php
 
-define("BASEPATH", "/home/web/site/");
-define("INC", "/home/web/include/");
+define("BASEPATH", "/srv/http/todo-list-and-file-browser/public/");
+define("INC", "/srv/http/todo-list-and-file-browser/include/");
 
 require BASEPATH."dbi/course.inc";
 require BASEPATH."dbi/person.inc";
@@ -75,7 +75,7 @@ function getFiles($directory) {
 }
 
 function getPublicFiles() {
-	if ($handle = opendir("/home/web/site/public")) {
+	if ($handle = opendir("/srv/http/todo-list-and-file-browser/public/public")) {
 		$files = array();
 
 		// prevent getting parent directory, current directory, and hidden files
@@ -91,7 +91,7 @@ function getPublicFiles() {
 		closedir($handle);
 		return $files;
 	} else {
-		echo "Could not retrieve files";
+		echo "Could not retrieve public files";
 	}
 }
 

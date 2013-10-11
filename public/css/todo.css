@@ -77,6 +77,17 @@
 	clear: both;
 	width: 100%;
 }
+#todo #add_item table {
+	width: 100%;
+}
+
+#todo #add_item table td.shrink {
+	white-space: nowrap;
+}
+
+#todo #add_item table td.expand {
+	width: 99%;
+}
 
 #todo input, #todo select {
 	font: 1em "Droid Sans", Calibri, Helvetica;
@@ -84,7 +95,7 @@
 }
 
 #todo #add_description {
-	width: 55%; 
+	width: 100%;
 }
 
 #todo #add_class {

@@ -1,6 +1,6 @@
 <?php
 
-require_once "/home/web/site/common.php";
+require_once "/srv/http/todo-list-and-file-browser/public/common.php";
 
 function queryItems() {
 
