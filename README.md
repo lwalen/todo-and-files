@@ -1,2 +1,2 @@
-## Todo list and file tracker
-For listing todos and tracking files!
+## Todo list and file browser
+For listing todos and browsing files!
