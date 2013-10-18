@@ -49,9 +49,9 @@ a:hover, a:active { color: #000; }
 
 #notes .name {
 	display: inline-block;
-	padding: 8px;
-	margin-right: 8px;
-	font-family: Calibri, "Open Sans", sans-serif;
+	padding: 5px;
+	margin-right: 2px;
+	font-family: "Open Sans", sans-serif;
 	background-color: #BAD6D4;
 	font-size: .9em;
 }
