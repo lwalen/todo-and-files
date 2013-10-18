@@ -83,7 +83,7 @@ if (count($classes) > 0) {
 <?php
 }
 ?>
-			<td class='shrink'><input type='text' id='add_due_date' placeholder='mm.dd.yy' size='8'/></td>
+			<td class='shrink'><input type='text' id='add_due_date' placeholder='date' size='8'/></td>
 			<td class='shrink'><input type='button' id='submit' value='Add' disabled/></td>
 		</tr>
 	</table>
