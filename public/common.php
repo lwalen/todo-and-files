@@ -8,6 +8,7 @@ require BASEPATH."dbi/person.inc";
 require BASEPATH."dbi/todo/item.inc";
 require BASEPATH."dbi/todo/getItems.php";
 require INC."db.inc";
+require INC."config.inc";
 
 if (!(defined("NO_LOGIN") && NO_LOGIN)) {
 	require BASEPATH."login.php";

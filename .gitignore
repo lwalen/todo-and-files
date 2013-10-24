@@ -3,3 +3,4 @@
 public/artists_with_one_song
 include/db.inc
 include/users.inc
+include/config.inc

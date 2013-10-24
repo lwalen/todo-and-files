@@ -2,16 +2,14 @@
 
 require_once "/srv/http/todo-list-and-file-browser/public/common.php";
 
-$basepath = "/home/lars/";
-
 if (isset($_POST['download'])) {
 	$path = $_POST['download'];
-	header('Content-Type: '.mime_content_type($basepath.$path));
+	header('Content-Type: '.mime_content_type(FILEPATH.$path));
 	header('Content-Disposition: attachment; filename='.array_pop(explode('/', $path)));
 	header('Content-Transfer-Encoding: binary');
-	header('Content-Length: '.filesize($basepath.$path));
+	header('Content-Length: '.filesize(FILEPATH.$path));
 	header('Accept-Ranges: bytes');
-	readfile($basepath.$path);
+	readfile(FILEPATH.$path);
 	exit;
 }
 
@@ -34,16 +32,16 @@ if( isset( $_GET['f'] ) ) {
 
 
 	// output certain files as plain text
-	if (preg_match('/^.*\.(tex|py|s|sh)$/', $file) || !mime_content_type($basepath.$dir.$file)) {
+	if (preg_match('/^.*\.(tex|py|s|sh)$/', $file) || !mime_content_type(FILEPATH.$dir.$file)) {
 		header('Content-Type: text/plain');
 	} else {
-		header('Content-Type: '.mime_content_type($basepath.$dir.$file));
+		header('Content-Type: '.mime_content_type(FILEPATH.$dir.$file));
 	}
 	header("Content-Disposition: inline; filename=$file");
 	header('Content-Transfer-Encoding: binary');
-	header('Content-Length: '.filesize($basepath.$dir.$file));
+	header('Content-Length: '.filesize(FILEPATH.$dir.$file));
 	header('Accept-Ranges: bytes');
-	readfile($basepath.$dir.$file);
+	readfile(FILEPATH.$dir.$file);
 	exit;
 }
 
@@ -60,8 +58,8 @@ writeHead($display_dir);
 
 	<div class='section files'>
 <?php
-if (is_dir($basepath.$dir)) {
-	$files = getFiles($basepath.$dir);
+if (is_dir(FILEPATH.$dir)) {
+	$files = getFiles(FILEPATH.$dir);
 	if (count($files) == 0) {
 ?>
 	<span class="no_content">empty</span>
@@ -69,7 +67,7 @@ if (is_dir($basepath.$dir)) {
 	} else {
 ?>
 		<form action='files.php' method='post'>
-<?php printFiles($basepath, $dir, $files) ?>
+<?php printFiles(FILEPATH, $dir, $files) ?>
 		</form>
 <?php
 	}
