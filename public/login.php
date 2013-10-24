@@ -1,7 +1,6 @@
 <?php
 
 require_once "common.php";
-require_once "/srv/http/todo-list-and-file-browser/include/users.inc";
 
 // User will be redirected to this page after logout
 define('LOGOUT_URL', '/');
@@ -78,7 +77,7 @@ if (isset($_POST['access_password'])) {
 
 	$pass = $_POST['access_password'];
 	$remember = isset( $_POST['remember_me'] );
-	$hash = password_hash($PASSWORD, PASSWORD_DEFAULT, $SALT);
+	$hash = password_hash(PASSWORD, PASSWORD_DEFAULT, ['salt' => SALT]);
 
 	if (!password_verify($pass, $hash)) {
 		showLoginPasswordProtect("Incorrect password.");
@@ -103,7 +102,7 @@ if (isset($_POST['access_password'])) {
 	}
 
 	// check if cookie is good
-	$hash = password_hash($PASSWORD, PASSWORD_DEFAULT, $SALT);
+	$hash = password_hash(PASSWORD, PASSWORD_DEFAULT, ['salt' => SALT]);
 	if (isset($_COOKIE['verify']) && $_COOKIE['verify'] == $hash) {
 		setcookie("verify", $hash, time() + 60*60*24*30, '/');
 	} else if (isset($_COOKIE['verify_session']) && $_COOKIE['verify_session'] == $hash) {

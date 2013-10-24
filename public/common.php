@@ -7,7 +7,6 @@ require BASEPATH."dbi/course.inc";
 require BASEPATH."dbi/person.inc";
 require BASEPATH."dbi/todo/item.inc";
 require BASEPATH."dbi/todo/getItems.php";
-require INC."db.inc";
 require INC."config.inc";
 
 if (!(defined("NO_LOGIN") && NO_LOGIN)) {
@@ -215,5 +214,16 @@ function writeHead($title, $extra="") {
 	<title><?= $title ?></title>
 </head>
 <?php
+}
+
+function connectToDB() {
+
+	$db = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+
+	if (!$db) {
+		die('Connect Error (' . mysqli_connect_errno() . ') ' . mysqli_connect_error());
+	} else {
+		return $db;
+	}
 }
 ?>
