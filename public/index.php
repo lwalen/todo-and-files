@@ -11,7 +11,7 @@ writeHead("walen.me");
 	<!-- begin title and uptime box -->
 	<div class='section'>
 		<div class='logout'>
-			<a href='/index.php?logout'>logout</a>
+			<a href='/login.php?logout'>logout</a>
 		</div>
 		<h1><?= gethostname() ?></h1>
 		<p class='uptime'><?= $uptime ?></p>

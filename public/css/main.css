@@ -85,7 +85,7 @@ a:hover, a:active { color: #000; }
 	margin-right: 10px;
 }
 
-.file {
+.file, .breadcrumbs {
 	font-size: .9em;
 }
 

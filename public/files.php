@@ -78,7 +78,7 @@ if (is_dir(FILEPATH.$dir)) {
 	</div>
 
 <!-- Breadcrumbs -->
-	<div class='section'>
+	<div class='section breadcrumbs'>
 		<a href='/'>walen.me</a>
 		<span class='separator'>/</span>
 <?php
