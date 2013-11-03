@@ -85,6 +85,10 @@ a:hover, a:active { color: #000; }
 	margin-right: 10px;
 }
 
+.file {
+	font-size: .9em;
+}
+
 .login {
 	margin: 20px auto;
 	width: 200px;
@@ -123,12 +127,10 @@ a:hover, a:active { color: #000; }
 }
 
 button.download {
-	width: 16px;
-	height: 16px;
+	width: 14px;
+	height: 14px;
 	border: 0;
 	margin: 0 0 0 5px;
-	position: relative;
-	top: 2px;
 	background-color: white;
 	background-image: url(custom-theme/images/ui-icons_222222_256x240.png);
 	background-repeat: no-repeat;

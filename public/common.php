@@ -139,8 +139,8 @@ function printFiles($basepath, $dir, $files, $separator = "\n", $download = true
 
 function fileLink($dir, $file) {
 	$link = "<a href='files.php?d=$dir&f=$file' title='$file'>";
-	if (strlen($file) > 25) {
-		$file = substr($file, 0, 25)."...";
+	if (strlen($file) > 24) {
+		$file = substr($file, 0, 24)."...";
 	}
 	return $link.$file."</a>";
 }
