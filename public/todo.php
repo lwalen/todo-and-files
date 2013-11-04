@@ -20,6 +20,8 @@ function week($date) {
 	return (int)date('W', $date);
 }
 
+deleteOldComplete();
+
 if ($todoItems) {
 
 	foreach ($todoItems as $item) {
@@ -37,6 +39,7 @@ if ($todoItems) {
 			echo "<hr>\n";			
 		}
 
+		//if ($due_date)
 ?>
 <div id='item_<?= $id ?>' class='item<?= $complete ? ' complete' : '' ?>'>
 	<input type='checkbox'<?= $complete ? " checked" : "" ?> />

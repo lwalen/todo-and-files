@@ -88,7 +88,6 @@ if (count($classes) > 0) {
 		</tr>
 	</table>
 </div>
-<input type='button' value='Clear Complete' class='remove_complete'/>
 
 <!-- it's gotta exist somewhere -->
 <div id='due_date_calendar'></div>

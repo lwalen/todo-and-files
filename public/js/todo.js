@@ -104,15 +104,6 @@ $(document).ready(function() {
 	});
 
 	/*
-	 * Remove complete when button clicked
-	 */
-	$('#todo').on('click', '.remove_complete', function() {
-		$.post( "/dbi/todo/deleteComplete.php", function() {
-			$('#items').load('/todo.php');
-		});
-	});
-
-	/*
 	 * Set item to complete when checked
 	 */
 	$('#todo').on('click', 'input[type="checkbox"]', function() {

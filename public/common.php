@@ -226,4 +226,12 @@ function connectToDB() {
 		return $db;
 	}
 }
+
+function deleteOldComplete() {
+	$db = connectToDB();
+
+	$query  = "DELETE FROM todo WHERE complete = 1 ";
+	$query .= "AND due_date < CURDATE(); ";
+	mysqli_query($db, $query);
+}
 ?>
