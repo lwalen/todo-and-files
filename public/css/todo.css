@@ -37,12 +37,21 @@
 }
 
 #todo .complete {
-	background-color: #aaffaa;
+	background-color: #AAFFAA;
 	display: inline;
 }
 
 .complete:hover {
 	background-color: #77FF77 !important;
+}
+
+#todo .past_due {
+	background-color: #FFAAAA;
+	display: inline;
+}
+
+.past_due:hover {
+	background-color: #FF7777 !important;
 }
 
 #todo .due_date {

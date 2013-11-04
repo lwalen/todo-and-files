@@ -39,9 +39,16 @@ if ($todoItems) {
 			echo "<hr>\n";			
 		}
 
-		//if ($due_date)
+		$modifiers = [];
+		if ($complete) {
+			$modifiers[] = 'complete';
+		}
+
+		if ($due_date && $due_date < date("m.d.y")) {
+			$modifiers[] = 'past_due';
+		}
 ?>
-<div id='item_<?= $id ?>' class='item<?= $complete ? ' complete' : '' ?>'>
+<div id='item_<?= $id ?>' class='item <?= join($modifiers, " ") ?>'>
 	<input type='checkbox'<?= $complete ? " checked" : "" ?> />
 	<div class='description'>
 <?php 
