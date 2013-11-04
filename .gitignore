@@ -1,5 +1,6 @@
 .*
 !/.gitignore
+public/public
 public/artists_with_one_song
 include/db.inc
 include/users.inc
