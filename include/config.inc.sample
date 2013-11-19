@@ -4,7 +4,6 @@ define("FILEPATH", "");
 
 // user login information
 define("PASSWORD", "");
-define("SALT", "");
 
 // database connection credentials
 define("DB_HOST", "");

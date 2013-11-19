@@ -50,7 +50,10 @@ if ($todoItems) {
 	<input type='checkbox'<?= $complete ? " checked" : "" ?> />
 	<div class='description'>
 <?php 
-echo preg_replace('@(http)?(s)?(://)?(([-\w]+\.)+([^\s]+)+[^,.\s])@', '<a href="http$2://$4">$1$2$3$4</a>', $description);
+$description = preg_replace('@(http)?(s)?(://)?(([-\w]+\.)+([^\s]+)+[^,.\s])@', '<a href="http$2://$4">$1$2$3$4</a>', $description);
+$description = str_replace('->', '&rarr;', $description);
+$description = str_replace('<-', '&larr;', $description);
+echo $description;
 
 if ($abbreviation) {
 	echo "<span class='course' title='$department $course'>$abbreviation</span>";
