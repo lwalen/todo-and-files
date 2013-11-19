@@ -1,6 +1,6 @@
 <?php
 
-	require "/srv/http/todo-list-and-file-browser/public/common.php";
+	require "/srv/http/todo-and-files/public/common.php";
 
 	if (!isset($_POST['description'])) {
 		return;

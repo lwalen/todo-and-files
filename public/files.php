@@ -1,6 +1,6 @@
 <?php
 
-require_once "/srv/http/todo-list-and-file-browser/public/common.php";
+require_once "/srv/http/todo-and-files/public/common.php";
 
 if (isset($_POST['download'])) {
 	$path = $_POST['download'];
