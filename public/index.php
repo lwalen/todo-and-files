@@ -118,7 +118,9 @@ foreach (getFiles('/home/lars/documents/') as $file) {
 $public_files = getPublicFiles();
 
 if (empty($files) && empty($public_files)) {
-	echo "			<span class='no_content'>no files</span>\n";
+?>
+	<span class='no_content'>no files</span>
+<?php
 } 
 
 if (!empty($files)) {
@@ -130,15 +132,23 @@ if (!empty($files)) {
 
 if( !empty( $public_files ) ) 
 {
-	echo "<div id='public_files'>Public</div>";
-	foreach( $public_files as $file )
-	{
+?>
+		<div id='public_files'>Public</div>
+<?php
+	foreach( $public_files as $file ) {
+		$url = "/public/";
+
 		// Markdown files over http to use Chrome extension
 		if (preg_match('/.*\.md$/', $file)) {
-			echo "			<span><a href='http://walen.me/public/$file'>$file</a></span>\n";
+			$url = "http://walen.me$url$file";
 		} else {
-			echo "			<span><a href='/public/$file'>$file</a></span>\n";
+			$url .= $file;
 		}
+?>
+			<span class='file'>
+				<a href='<?= $url ?>'><?= $file ?></a>
+			</span>
+<?php
 	}
 }
 ?>
