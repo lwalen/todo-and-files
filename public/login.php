@@ -103,12 +103,12 @@ if (isset($_POST['access_password'])) {
 
 	// check if cookie is good
 	$hash = password_hash(PASSWORD, PASSWORD_DEFAULT);
-	if (isset($_COOKIE['verify']) && $_COOKIE['verify'] == $hash) {
+	if (isset($_COOKIE['verify']) && password_verify(PASSWORD, $_COOKIE['verify'])) {
 		setcookie("verify", $hash, time() + 60*60*24*30, '/');
-	} else if (isset($_COOKIE['verify_session']) && $_COOKIE['verify_session'] == $hash) {
+	} else if (isset($_COOKIE['verify_session']) && password_verify(PASSWORD, $_COOKIE['verify_session'])) {
 		setcookie("verify_session", $hash, 0, '/');
 	} else {
-		showLoginPasswordProtect();
+		showLoginPasswordProtect("Invalid cookie");
 	}
 }
 
