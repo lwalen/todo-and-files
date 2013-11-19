@@ -17,14 +17,14 @@ if(!function_exists('showLoginPasswordProtect')) {
 
 	// show login form
 	function showLoginPasswordProtect($error_msg = "") {
-		writeHead("walen.me");
+		writeHead(DOMAIN);
 ?>
 	<!-- <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
 	<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
 </head>-->
 <body>
 	<div class='section'>
-		<h1>walen.me</h1>
+		<h1><?= DOMAIN ?></h1>
 <?php
 $people = queryPeople();
 foreach ($people as $person) {
@@ -52,11 +52,11 @@ foreach ($people as $person) {
 		$public_files = getPublicFiles();
 
 		if (empty($public_files)) {
-			echo "			<span class='no_content'>no public files</span>\n";
+?>
+			<span class='no_content'>no public files</span>
+<?php
 		} else {
-			foreach ($public_files as $file) {
-				echo "			<a href='/public/$file'>$file</a>\n";
-			}
+			printPublicFiles($public_files);
 		}
 ?>
 		</div>

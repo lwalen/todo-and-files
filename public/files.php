@@ -79,7 +79,7 @@ if (is_dir(FILEPATH.$dir)) {
 
 <!-- Breadcrumbs -->
 	<div class='section breadcrumbs'>
-		<a href='/'>walen.me</a>
+		<a href='/'><?= DOMAIN ?></a>
 		<span class='separator'>/</span>
 <?php
 $path = explode('/', $dir);

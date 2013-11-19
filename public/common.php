@@ -113,20 +113,20 @@ function printFiles($basepath, $dir, $files, $separator = "\n", $download = true
 			// Directory
 			if (is_dir($basepath.$dir.$file)) {
 				echo "<a href='files.php?d=$dir$file'>$file/</a>";
-				
-			// PDF with TeX
+
+				// PDF with TeX
 			} else if (preg_match('/.*\.pdf$/', $file) && is_file($basepath.$dir.$file_tex)) {
 				echo fileLink($dir, $file);
 				echo " [<a href='files.php?d=$dir&f=$file_tex'>.tex</a>]";
 				if ($download) echo downloadLink($dir, $file);
 				$do_not_show[] = $file_tex;
-				
-			// Markdown files over http to use Chrome extension
+
+				// Markdown files over http to use Chrome extension
 			} else if (preg_match('/.*\.md$/', $file)) {
-				echo "<a href='http://walen.me/files.php?d=$dir&f=$file'>$file</a>";
+				echo "<a href='http://".DOMAIN."/files.php?d=$dir&f=$file'>$file</a>";
 				if ($download) echo downloadLink($dir, $file);
-				
-			// Regular file
+
+				// Regular file
 			} else {
 				echo fileLink($dir, $file);
 				if ($download) echo downloadLink($dir, $file);
@@ -134,6 +134,24 @@ function printFiles($basepath, $dir, $files, $separator = "\n", $download = true
 
 			echo "</$tag>\n";
 		}
+	}
+}
+
+function printPublicFiles($files) {
+	foreach( $files as $file ) {
+		$url = "/public/";
+
+		// Markdown files over http to use Chrome extension
+		if (preg_match('/.*\.md$/', $file)) {
+			$url = "http://".DOMAIN.$url.$file;
+		} else {
+			$url .= $file;
+		}
+?>
+			<span class='file'>
+				<a href='<?= $url ?>'><?= $file ?></a>
+			</span>
+<?php
 	}
 }
 
@@ -177,19 +195,19 @@ function getUptime() {
 }
 
 function getBytes($val) {
-    $val = trim($val);
-    $last = strtolower($val[strlen($val)-1]);
-    switch($last) {
-        // The 'G' modifier is available since PHP 5.1.0
-        case 'g':
-            $val *= 1024;
-        case 'm':
-            $val *= 1024;
-        case 'k':
-            $val *= 1024;
-    }
+	$val = trim($val);
+	$last = strtolower($val[strlen($val)-1]);
+	switch($last) {
+		// The 'G' modifier is available since PHP 5.1.0
+	case 'g':
+		$val *= 1024;
+	case 'm':
+		$val *= 1024;
+	case 'k':
+		$val *= 1024;
+	}
 
-    return $val;
+	return $val;
 }
 
 function writeHead($title, $extra="") {

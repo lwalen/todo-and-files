@@ -5,7 +5,7 @@ require_once "common.php";
 $classes = queryClasses();
 $uptime = getUptime();
 
-writeHead("walen.me");
+writeHead(DOMAIN);
 ?>
 <body>
 	<!-- begin title and uptime box -->
@@ -109,7 +109,6 @@ for ($i = 0; $i < count($classes); $i++) {
 	$classes[$i] = str_replace(' ', '_', strtolower($classes[$i]->name));
 }
 
-//		while (($file = readdir($handle))) {
 foreach (getFiles('/home/lars/documents/') as $file) {
 	if ($file != "public" && !in_array($file, $classes)) {
 		$files[] = $file;
@@ -135,21 +134,7 @@ if( !empty( $public_files ) )
 ?>
 		<div id='public_files'>Public</div>
 <?php
-	foreach( $public_files as $file ) {
-		$url = "/public/";
-
-		// Markdown files over http to use Chrome extension
-		if (preg_match('/.*\.md$/', $file)) {
-			$url = "http://walen.me$url$file";
-		} else {
-			$url .= $file;
-		}
-?>
-			<span class='file'>
-				<a href='<?= $url ?>'><?= $file ?></a>
-			</span>
-<?php
-	}
+	printPublicFiles($public_files);
 }
 ?>
 		</div>

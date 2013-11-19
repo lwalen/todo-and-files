@@ -1,4 +1,7 @@
 <?php
+// domain name
+define("DOMAIN", "");
+
 // basepath to use for files
 define("FILEPATH", "");
 
